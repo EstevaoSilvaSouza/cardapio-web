@@ -15,11 +15,15 @@ export const SubDivStore = styled.div`
   padding: 5px;
 `;
 
-export const CardDivStore = styled.div`
-  width: 260px;
+export const CardDivStore = styled.div<{ tamanho?: string }>`
+  width: ${(props) => props?.tamanho};
   height: auto;
   margin: 10px;
   padding: 10px;
   border-radius: 4%;
   background-color: #d7c5c579;
+  transition: 7s all ease;
+
+  &:hover {
+  }
 `;
