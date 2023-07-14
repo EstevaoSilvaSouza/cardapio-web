@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Container from "../components/layout/container";
 import HeaderMenu from "../components/layout/header";
 import Store from "../components/pages/store";
+import StoreCart from "../components/pages/storeCart";
 
 const MainRouter = () => {
   return (
@@ -18,7 +19,8 @@ const MainRouter = () => {
             }
           />
 
-          <Route path="/loja/:NameStore" element={<Store />} />
+          <Route path="/store/:NameStore" element={<Store />} />
+          <Route path="/store/cart" element={<StoreCart />} />
 
           <Route
             path="*"

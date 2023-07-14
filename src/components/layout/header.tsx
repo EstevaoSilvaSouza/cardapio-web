@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { DivHeader, LinkS, Lista, MenuItem } from "../style/headerstyled";
 
 const HeaderMenu = () => {
@@ -12,7 +11,7 @@ const HeaderMenu = () => {
           <LinkS to={"/"}>Suporte</LinkS>
         </MenuItem>
         <MenuItem>
-          <LinkS to={"/"}>Carrinho</LinkS>
+          <LinkS to={"/store/cart"}>Carrinho</LinkS>
         </MenuItem>
       </Lista>
     </DivHeader>

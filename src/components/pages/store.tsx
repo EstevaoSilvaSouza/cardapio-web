@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
 import CardStore from "../cardstore/cardstore";
 import { MainDivStore, SubDivStore } from "../style/storestyled";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Send } from "../../context/api/SendApi";
 import { AxiosResponse } from "axios";
+import { StoreContext } from "../../context/Store/StoreContext";
 
 export interface IProduct {
   Id?: number;
@@ -14,7 +15,7 @@ export interface IProduct {
   Description: string;
   Tag: string;
 }
-interface IStore {
+export interface IStore {
   Data: {
     Id?: number;
     Name: string;
@@ -27,7 +28,8 @@ interface IStore {
 const Store = () => {
   const { NameStore } = useParams();
   const [data, setData] = useState<IStore | null>(null);
-
+  const { CreateCart } = useContext(StoreContext);
+  const ObjRefe = data?.Data?.Products;
   const request = async () => {
     Send("store/find", "post", {
       Name: NameStore,
@@ -36,23 +38,31 @@ const Store = () => {
       .then((e: AxiosResponse<any, any> | undefined) => setData(e?.data))
       .catch((e) => console.error(e));
   };
-  const AddQuantity = (obj: IProduct) => {
-    const novoObj = obj?.Quantity + 1;
-    const ArrayFiltrado: any = data?.Data.Products?.filter(
-      (e) => e.Id !== obj.Id
+  const AddQuantity = (obj: IProduct, type: string): void => {
+    type === "+" ? (obj.Quantity += 1) : (obj.Quantity -= 1);
+    if (obj.Quantity < 0) {
+      obj.Quantity = 0;
+    }
+    const indexFiltrado: any = data?.Data?.Products?.findIndex(
+      (e) => e.Id === obj.Id
     );
-    setData((value) => ({
-      ...value!,
-      Data: {
-        ...value!.Data,
-        Products: [...ArrayFiltrado, { ...obj, Quantity: novoObj }],
-      },
-    }));
+
+    if (indexFiltrado > -1 && ObjRefe) {
+      ObjRefe[indexFiltrado].Quantity = obj.Quantity;
+      setData((prevItem) => ({
+        ...prevItem!,
+        Data: { ...prevItem!.Data, Products: [...ObjRefe] },
+      }));
+    }
   };
 
   useEffect(() => {
     request();
   }, []);
+
+  const AddCartItem = (obj: IProduct): void => {
+    CreateCart(obj);
+  };
 
   return (
     <MainDivStore>
@@ -70,6 +80,7 @@ const Store = () => {
                 description={e?.Description}
                 quantity={e?.Quantity}
                 AddQuantity={AddQuantity}
+                AddCart={AddCartItem}
                 obj={e}
               />
             ))}
