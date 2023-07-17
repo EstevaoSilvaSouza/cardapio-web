@@ -10,9 +10,6 @@ const HeaderMenu = () => {
         <MenuItem>
           <LinkS to={"/"}>Suporte</LinkS>
         </MenuItem>
-        <MenuItem>
-          <LinkS to={"/store/cart"}>Carrinho</LinkS>
-        </MenuItem>
       </Lista>
     </DivHeader>
   );

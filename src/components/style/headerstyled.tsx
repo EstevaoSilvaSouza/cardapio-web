@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const DivHeader = styled.div`
-  background-color: #c5c4b6c6;
+  background-color: #111111;
+  width: 100%;
+  border-radius: 10px;
 `;
 
 export const Lista = styled.ul`
@@ -12,19 +14,21 @@ export const Lista = styled.ul`
 `;
 
 export const MenuItem = styled.li`
-  margin: 15px;
+  margin: 20px;
   list-style: none;
 `;
 
 export const LinkS = styled(Link)`
   text-decoration: none;
+  color: #f4f4f4;
 
   &:hover,
   &:focus {
-    color: #fff;
+    color: #f4f4f490;
+    font-weight: 600;
   }
 
   &:active {
-    color: #000;
+    color: #000000;
   }
 `;

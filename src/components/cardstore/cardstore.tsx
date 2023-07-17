@@ -1,18 +1,12 @@
 import { useState } from "react";
-import { CardDivStore } from "../style/storestyled";
+import { BtnsAdd, BtnsAddMore, CardDivStore } from "../style/storestyled";
 import { IProduct } from "../pages/store";
 
 const CardStore = ({
-  name,
-  description,
-  quantity,
   AddQuantity,
   AddCart,
   obj,
 }: {
-  name: string;
-  description: string;
-  quantity: number;
   AddQuantity: (obj: IProduct, type: string) => void;
   AddCart: (obj: IProduct) => void;
   obj: IProduct;
@@ -21,28 +15,27 @@ const CardStore = ({
 
   return (
     <CardDivStore
-      tamanho={isShow ? "251px" : "250px"}
-      onMouseEnter={() => setIsShow(true)}
-      onMouseLeave={() => setIsShow(false)}
+      $tamanho={"251px"}
+      //onMouseEnter={() => setIsShow(true)}
+      //onMouseLeave={() => setIsShow(false)}
     >
       <img
-        style={{ width: "250px" }}
+        style={{ width: "251px" }}
         src={
           "https://s2.glbimg.com/IaEnP49buSdSUDftlMxVrq3-ZDo=/940x523/e.glbimg.com/og/ed/f/original/2019/04/26/loucosporti1.jpg"
         }
       />
-      <h3>{name}</h3>
-      <h4>{description}</h4>
+      <h3>{obj.Name}</h3>
+      <h4>{obj.Description}</h4>
+      <h4>Valor - {obj.Value}</h4>
 
-      {isShow && (
-        <div>
-          Quantidade {quantity}
-          <button onClick={() => AddQuantity(obj, "+")}>+</button>
-          <button onClick={() => AddQuantity(obj, "-")}>-</button>
-        </div>
-      )}
+      <div>
+        Quantidade {obj.Quantity}
+        <BtnsAddMore onClick={() => AddQuantity(obj, "+")}>+</BtnsAddMore>
+        <BtnsAddMore onClick={() => AddQuantity(obj, "-")}>-</BtnsAddMore>
+      </div>
 
-      <button onClick={() => AddCart(obj)}>Adicionar</button>
+      <BtnsAdd onClick={() => AddCart(obj)}>Adicionar</BtnsAdd>
     </CardDivStore>
   );
 };
