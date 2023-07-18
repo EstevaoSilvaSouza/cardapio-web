@@ -11,8 +11,6 @@ const CardStore = ({
   AddCart: (obj: IProduct) => void;
   obj: IProduct;
 }) => {
-  const [isShow, setIsShow] = useState<boolean>(false);
-
   return (
     <CardDivStore
       $tamanho={"251px"}

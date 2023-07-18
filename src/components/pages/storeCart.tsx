@@ -9,6 +9,7 @@ import {
   TitleProduct,
 } from "../style/storecart";
 import { IProduct } from "./store";
+import { BtnsAdd } from "../style/storestyled";
 
 const StoreCart = () => {
   const { StoreCart } = useContext(StoreContext);
@@ -56,7 +57,7 @@ const StoreCart = () => {
   return (
     <>
       <DivCart>
-        <button onClick={BackPage}>Voltar Menu</button>
+        <BtnsAdd onClick={BackPage}>Voltar Menu</BtnsAdd>
         <TitleCart>Carrinho de compra</TitleCart>
 
         <div>

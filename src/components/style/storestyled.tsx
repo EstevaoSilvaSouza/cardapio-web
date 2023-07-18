@@ -23,7 +23,11 @@ export const CardDivStore = styled.div<{ $tamanho?: string }>`
   border-radius: 4%;
   background-color: #f8f8f8;
 
-  transition: 7s all ease;
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+    width: 400px;
+    background-color: #f8f8f8;
+  }
 
   &:hover {
   }
@@ -36,22 +40,54 @@ export const DivBtns = styled.div`
   flex-direction: row;
   justify-content: center;
   margin-bottom: 15px;
-  //background-color: red;
+
+  @media screen and (max-width: 480px) {
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  @media screen and (min-width: 1024px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: auto;
+    height: auto;
+  }
 `;
 
-export const Btns = styled.button`
+export const Btns = styled.button<{ $isActive: any }>`
   margin: 10px;
   height: 45px;
   width: 250px;
   font-size: 20px;
-  background-color: #111111;
-  color: #fff;
+
+  background-color: ${(prop) => (prop.$isActive ? "#0c7edc" : "#111111")};
+  color: ${(prop) => (prop.$isActive ? "#000" : "#fff")};
+  font-weight: ${(p) => (p.$isActive ? "bolder" : 400)};
   cursor: pointer;
-  border-radius: 5%;
+
   overflow: auto;
 
+  @media (max-width: 480px) {
+    width: max-content;
+    font-size: 15px;
+    border-radius: 10%;
+    border-style: none;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 150px;
+    font-size: 15px;
+    border-radius: 5%;
+    border-style: none;
+  }
+
+  @media screen and (min-width: 1565px) {
+    width: 150px;
+    font-size: 15px;
+  }
+
   &:hover {
-    background-color: #4e4b4b;
+    background-color: #0c7edc;
   }
 `;
 export const BtnsAddMore = styled.button`
@@ -70,4 +106,6 @@ export const BtnsAdd = styled.button`
   margin-top: 15px;
   width: 150px;
   cursor: pointer;
+  align-self: center;
+  justify-self: center;
 `;

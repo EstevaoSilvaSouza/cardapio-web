@@ -38,6 +38,7 @@ const Store = () => {
   const { NameStore } = useParams();
   const [data, setData] = useState<IStore | null>(null);
   const [filterItens, SetFilterItens] = useState<IStore | null>(null);
+  const [isClick, SetClick] = useState<string | null>(null);
 
   const { CreateCart } = useContext(StoreContext);
   const navigate = useNavigate();
@@ -55,6 +56,7 @@ const Store = () => {
   };
 
   const FilterButton = (cate: string) => {
+    SetClick(cate);
     if (cate === "Todos") {
       SetFilterItens(data);
     } else {
@@ -92,9 +94,11 @@ const Store = () => {
 
   useEffect(() => {
     SetFilterItens(data);
+    SetClick("Todos");
   }, [data]);
 
   const AddCartItem = (obj: IProduct): void => {
+    obj.Id = Math.random() + 2 * 3;
     CreateCart(obj);
   };
 
@@ -106,19 +110,47 @@ const Store = () => {
     <MainDivStore>
       {filterItens ? (
         <>
-          <div>
-            <h1>{filterItens?.Data?.Name}</h1>
-            <BtnsAdd onClick={SendCart}>Carrinho</BtnsAdd>
+          <BtnsAdd onClick={SendCart}>Carrinho</BtnsAdd>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: " center",
+              //top: "-150px",
+              //position: "relative",
+            }}
+          >
+            <div>
+              <h1>{filterItens?.Data?.Name}</h1>
+            </div>
+            <div>
+              <img
+                style={{
+                  width: "120px",
+                }}
+                src={filterItens.Data.ImageUrl}
+              />
+            </div>
             <p>{filterItens?.Data?.Description}</p>
           </div>
+
           <DivBtns>
             {filterItens.Categoria && (
               <>
-                <Btns key={"todos"} onClick={() => FilterButton("Todos")}>
+                <Btns
+                  $isActive={isClick === "Todos"}
+                  key={"todos"}
+                  onClick={() => FilterButton("Todos")}
+                >
                   Todos
                 </Btns>
                 {filterItens.Categoria.map((i: any) => (
-                  <Btns key={i} onClick={() => FilterButton(i)}>
+                  <Btns
+                    $isActive={isClick === i}
+                    key={i}
+                    onClick={() => FilterButton(i)}
+                  >
                     {i}
                   </Btns>
                 ))}
