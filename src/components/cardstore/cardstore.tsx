@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BtnsAdd, BtnsAddMore, CardDivStore } from "../style/storestyled";
 import { IProduct } from "../pages/store";
 

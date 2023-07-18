@@ -3,7 +3,6 @@ import CardStore from "../cardstore/cardstore";
 import {
   Btns,
   BtnsAdd,
-  BtnsAddMore,
   DivBtns,
   MainDivStore,
   SubDivStore,

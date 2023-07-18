@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { IStoreCart, StoreContext } from "./StoreContext";
-import { IProduct, IStore } from "../../components/pages/store";
+import { IProduct } from "../../components/pages/store";
 
 export const StoreProvider = ({
   children,
@@ -54,7 +54,7 @@ export const StoreProvider = ({
 
   let CreateCart = async (obj: IProduct): Promise<number | null> => {
     AddCartLocal(obj);
-    return 1;
+    return 2;
   };
 
   return (

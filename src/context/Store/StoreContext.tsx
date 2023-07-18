@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { IProduct, IStore } from "../../components/pages/store";
+import { IProduct } from "../../components/pages/store";
 
 export interface IStoreCart {
   Items?: IProduct[] | null;
