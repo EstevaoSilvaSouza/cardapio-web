@@ -1,10 +1,10 @@
 import "./App.css";
-import MainRouter from "./routers/MainRouter";
+import OtherRouter from "./routers/OtherRouter";
 
 function App() {
   return (
     <>
-      <MainRouter />
+      <OtherRouter/>
     </>
   );
 }

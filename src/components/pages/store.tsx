@@ -38,6 +38,7 @@ const Store = () => {
   const [data, setData] = useState<IStore | null>(null);
   const [filterItens, SetFilterItens] = useState<IStore | null>(null);
   const [isClick, SetClick] = useState<string | null>(null);
+  const [loading,SetLoading] = useState<boolean>(false);
 
   const { CreateCart } = useContext(StoreContext);
   const navigate = useNavigate();
@@ -50,6 +51,7 @@ const Store = () => {
     })
       .then((e: AxiosResponse<any, any> | undefined) => {
         setData(e?.data);
+        SetLoading(true);
       })
       .catch((e) => console.error(e));
   };
@@ -107,7 +109,9 @@ const Store = () => {
 
   return (
     <MainDivStore>
-      {filterItens ? (
+      {loading ? (
+        <>
+          {filterItens ? (
         <>
           <BtnsAdd onClick={SendCart}>Carrinho</BtnsAdd>
           <div
@@ -174,6 +178,13 @@ const Store = () => {
           </div>
         </>
       )}
+        </>
+      ) 
+    :
+    <>
+      <h1>Carregando aguarde.....</h1>
+    </>}
+    
     </MainDivStore>
   );
 };
