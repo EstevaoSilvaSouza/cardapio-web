@@ -23,7 +23,7 @@ export const StoreProvider = ({
       );
     }
     SetStoreCart(JSON.parse(localStorage.getItem(Token)!));
-    console.log(StoreCart);
+    //console.log(StoreCart);
   }, []);
 
   const GetItensLocal = (): string | null => {
@@ -57,8 +57,20 @@ export const StoreProvider = ({
     return 2;
   };
 
+  let removeCart = (idx:any) => {
+    const getItens = JSON.parse(localStorage.getItem(Token)!);
+    if(getItens){
+      const itensRemove = getItens?.Items?.filter((e:any) => e.Id !== idx);
+      console.log(itensRemove);
+      //console.log(getItens);
+     getItens.Items = [...itensRemove];
+      localStorage.setItem(Token,JSON.stringify(getItens));
+      SetStoreCart(getItens);
+    }
+  } 
+
   return (
-    <StoreContext.Provider value={{ StoreCart, CreateCart }}>
+    <StoreContext.Provider value={{ StoreCart, CreateCart,removeCart }}>
       {children}
     </StoreContext.Provider>
   );

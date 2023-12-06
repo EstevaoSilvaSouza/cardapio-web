@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../../context/Store/StoreContext";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -7,13 +7,18 @@ import {
   DivCartSub,
   TitleCart,
   TitleProduct,
+  ProductImage,
+  Button,
+  IncrementButton,
+  H2,
+  H3,
+  H4,
 } from "../style/storecart";
 import { IProduct } from "./store";
-import { BtnsAdd } from "../style/storestyled";
 
 const StoreCart = () => {
-  const { StoreCart } = useContext(StoreContext);
-  const [StoreItems, SetStoreItems] = useState(StoreCart);
+  const { StoreCart , removeCart} = useContext(StoreContext);
+  const [StoreItems, setStoreItems] = useState(StoreCart);
   const { NameStore } = useParams();
   const SubTotal = StoreCart?.Items?.reduce((acc, val) => {
     return acc + val.Value * val.Quantity;
@@ -21,6 +26,7 @@ const StoreCart = () => {
 
   const ObjRef: any = StoreCart;
   const navigate = useNavigate();
+
   const HandleQuantity = (type?: string, obj?: IProduct) => {
     type === "+" ? (obj!.Quantity += 1) : (obj!.Quantity -= 1);
 
@@ -31,68 +37,75 @@ const StoreCart = () => {
 
     if (findIndexItem !== undefined && ObjRef?.Items) {
       ObjRef.Items[findIndexItem].Quantity = obj?.Quantity;
-      SetStoreItems((prev) => ({
+      setStoreItems((prev) => ({
         ...prev,
         Items: [...ObjRef.Items],
       }));
     }
   };
 
-  const BackPage = () => {
-    navigate(`/store/${NameStore}`);
+  const backToMenu = () => {
+    navigate(`/cardapio/loja/${NameStore}`);
   };
 
   const RemoveCart = (idx: any) => {
-    console.log(idx);
-    const t: any = StoreItems?.Items?.splice(idx, 1);
-    console.log(StoreItems?.Items);
-
-    SetStoreItems((prev) => ({ ...prev, Items: [...t] }));
+    //console.log(idx);
+    //const t: any = StoreItems?.Items?.splice(idx, 1);
+    //console.log(StoreItems?.Items);
+    removeCart(idx)
+    //setStoreItems((prev) => ({ ...prev, Items: [...t] }));
   };
 
   useEffect(() => {
-    SetStoreItems(StoreCart);
+    setStoreItems(StoreCart);
   });
 
   return (
     <>
       <DivCart>
-        <BtnsAdd onClick={BackPage}>Voltar Menu</BtnsAdd>
-        <TitleCart>Carrinho de compra</TitleCart>
+        <Button onClick={backToMenu}>Voltar para o Menu</Button>
+        <TitleCart>Carrinho de Compra</TitleCart>
 
         <div>
-          <h3> Cart - {StoreItems?.CartName}</h3>
-          <h2>Items do Carrinho - {StoreItems?.Items?.length}</h2>
+          <H3> Carrinho de Compra - {StoreItems?.CartName}</H3>
+          <H2>Itens no Carrinho - {StoreItems?.Items?.length}</H2>
           {StoreItems?.Items ? (
             <DivCartSub>
               <div style={{ width: "70%" }}>
                 {StoreItems.Items.map((e, idx) => (
                   <CartItem key={e.Id}>
-                    <TitleProduct>Produto - {e.Name}</TitleProduct>
+                    <ProductImage src={'ok'} alt={e.Name} />
                     <div>
-                      Quantidade
-                      {"       "}
-                      <button onClick={() => HandleQuantity("+", e)}>+</button>
-                      {"    " + e.Quantity + "   "}
-                      <button onClick={() => HandleQuantity("-", e)}>-</button>
+                      <TitleProduct>Produto - {e.Name}</TitleProduct>
+                      <div>
+                        Quantidade
+                        {"       "}
+                        <IncrementButton onClick={() => HandleQuantity("+", e)}>
+                          +
+                        </IncrementButton>
+                        {"    " + e.Quantity + "   "}
+                        <IncrementButton onClick={() => HandleQuantity("-", e)}>
+                          -
+                        </IncrementButton>
+                      </div>
+                      <H2>Descrição - {e.Description}</H2>
+                      <H3>Total - {e.Value * e.Quantity}</H3>
+                      <Button onClick={() => RemoveCart(e.Id)}>
+                        Remover item{" "}
+                      </Button>
                     </div>
-                    <h2>Descrição - {e.Description}</h2>
-                    <h3>Total - {e.Value * e.Quantity}</h3>
-                    <button onClick={() => RemoveCart(idx)}>
-                      Remover item{" "}
-                    </button>
                   </CartItem>
                 ))}
               </div>
 
               <div style={{ width: "30%" }}>
-                <h2>Resumo do Pedido</h2>
-                <h4>Subtotal {SubTotal}</h4>
+                <H2>Resumo do Pedido</H2>
+                <H4>Subtotal {SubTotal}</H4>
               </div>
             </DivCartSub>
           ) : (
             <>
-              <h3>Sem itens no momento</h3>
+              <H3>Sem itens no momento</H3>
             </>
           )}
         </div>

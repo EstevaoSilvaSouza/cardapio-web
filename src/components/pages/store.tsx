@@ -104,7 +104,7 @@ const Store = () => {
   };
 
   const SendCart = () => {
-    navigate(`/store/checkout/${NameStore}`);
+    navigate(`/cardapio/loja/checkout/${NameStore}`);
   };
 
   return (

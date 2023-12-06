@@ -27,7 +27,7 @@ const Home = () => {
        <Flex rounded={4} w={'90%'} p={10} h={'100%'} bg={'white'} justifyContent={'center'} alignItems={'center'}>
         {MenuItens.map((e) => (
           <>
-           <Center w={'150px'} bg={'green.500'}>
+           <Center w={'150px'} fontWeight={'400'}>
              <Link to={'/'}>{e.Name}</Link>
            </Center>
            <Spacer />
@@ -44,13 +44,33 @@ const Home = () => {
       <div style={{height:'30px'}}></div>
      
       <Box bg={'#D4E9E2'} w={'90%'} h={'250px'} margin={'0 auto'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
-
           <h3 style={{fontWeight:'bold'}}>“A cada xícara, a cada conversa, com cada comunidade – Nós nutrimos infinitas possibilidades de conexão humana.”</h3>
-
-        
       </Box>
 
+      <div style={{height:'30px'}}></div>
 
+      <Box bg={'#D4E9E2'} w={'90%'} h={'390px'} margin={'0 auto'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+        <Box w={'50%'} h={'390px'}>
+          <img style={{ width:'100%',height:'390px'}} src="https://www.starbucks.com.br/public/img/home/15170_SBUX_REW_BANNERS3MAIO_01.png"/>
+        </Box>
+        <Box w={'50%'} pl={10}>
+        <h3 style={{fontWeight:'bold'}}>“A cada xícara, a cada conversa, com cada comunidade – Nós nutrimos infinitas possibilidades de conexão humana.”</h3>
+        </Box>
+      </Box>
+
+      <div style={{height:'30px'}}></div>
+
+      <Box bg={'#D4E9E2'} w={'90%'} h={'390px'} margin={'0 auto'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+        <Box w={'50%'} pl={10}>
+        <h3 style={{fontWeight:'bold'}}>“A cada xícara, a cada conversa, com cada comunidade – Nós nutrimos infinitas possibilidades de conexão humana.”</h3>
+        </Box>
+
+        <Box w={'50%'} h={'390px'}>
+          <img style={{ width:'100%',height:'390px'}} src="https://www.starbucks.com.br/public/img/home/15170_SBUX_REW_BANNERS3MAIO-02.png"/>
+        </Box>
+      </Box>
+
+      <div style={{height:'30px'}}></div>
      </Box>
   )
 }

@@ -1,8 +1,12 @@
 import styled from "styled-components";
 
+const primaryColor = "#111111";
+const secondaryColor = "#fff";
+const accentColor = "#0c7edc";
+const boxShadowColor = "rgba(0, 0, 0, 0.2)";
+
 export const MainDivStore = styled.div`
   width: 90%;
-  height: 100%;
   margin: 0 auto;
 `;
 
@@ -11,46 +15,37 @@ export const SubDivStore = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  //background-color: green;
-  padding: 5px;
+  padding: 15px;
 `;
 
 export const CardDivStore = styled.div<{ $tamanho?: string }>`
-  width: ${(props) => props?.$tamanho};
-  height: auto;
+  width: ${(props) => props?.$tamanho || "200px"};
   margin: 10px;
-  padding: 10px;
-  border-radius: 4%;
-  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: ${secondaryColor};
+  box-shadow: 0 4px 8px ${boxShadowColor};
 
-  @media screen and (max-width: 480px) {
-    flex-direction: column;
-    width: 400px;
-    background-color: #f8f8f8;
+  @media screen and (max-width: 767px) {
+    width: 100%;
   }
 
   &:hover {
+    box-shadow: 0 8px 16px ${boxShadowColor};
+    transform: translateY(-4px);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
   }
 `;
 
 export const DivBtns = styled.div`
-  //width: 70vw;
   height: 40px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin-bottom: 15px;
 
-  @media screen and (max-width: 480px) {
-    flex-wrap: wrap;
-    height: auto;
-  }
-
-  @media screen and (min-width: 1024px) {
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: auto;
-    height: auto;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
   }
 `;
 
@@ -58,54 +53,50 @@ export const Btns = styled.button<{ $isActive: any }>`
   margin: 10px;
   height: 45px;
   width: 250px;
-  font-size: 20px;
-
-  background-color: ${(prop) => (prop.$isActive ? "#0c7edc" : "#111111")};
-  color: ${(prop) => (prop.$isActive ? "#000" : "#fff")};
+  font-size: 18px;
+  background-color: ${(prop) => (prop.$isActive ? accentColor : primaryColor)};
+  color: ${(prop) => (prop.$isActive ? primaryColor : secondaryColor)};
   font-weight: ${(p) => (p.$isActive ? "bolder" : 400)};
   cursor: pointer;
+  border: none;
+  border-radius: 5px;
 
-  overflow: auto;
-
-  @media (max-width: 480px) {
-    width: max-content;
-    font-size: 15px;
-    border-radius: 10%;
-    border-style: none;
-  }
-
-  @media screen and (min-width: 1024px) {
-    width: 150px;
-    font-size: 15px;
-    border-radius: 5%;
-    border-style: none;
-  }
-
-  @media screen and (min-width: 1565px) {
-    width: 150px;
-    font-size: 15px;
+  @media (max-width: 767px) {
+    width: 100%;
+    font-size: 16px;
   }
 
   &:hover {
-    background-color: #0c7edc;
+    background-color: ${accentColor};
   }
 `;
+
 export const BtnsAddMore = styled.button`
-  background-color: #111111;
-  color: #fff;
+  background-color: ${primaryColor};
+  color: ${secondaryColor};
   height: 30px;
   margin-left: 20px;
   width: 30px;
   cursor: pointer;
+  border: none;
+  border-radius: 5px;
+
 `;
 
 export const BtnsAdd = styled.button`
-  background-color: #111111;
-  color: #fff;
+  background-color: ${primaryColor};
+  color: ${secondaryColor};
   height: 35px;
   margin-top: 15px;
   width: 150px;
   cursor: pointer;
   align-self: center;
   justify-self: center;
+  border: none;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #090303b9;
+    
+  }
 `;

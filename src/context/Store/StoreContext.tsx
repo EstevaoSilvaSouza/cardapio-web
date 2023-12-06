@@ -10,6 +10,7 @@ export interface IStoreCart {
 export interface IStoreContext {
   StoreCart: IStoreCart | null;
   CreateCart: (obj: IProduct) => Promise<number | null>;
+  removeCart : (idx:any) => void;
 }
 
 export const StoreContext = createContext<IStoreContext>(null!);
