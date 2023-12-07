@@ -6,7 +6,7 @@ const accentColor = "#e74c3c";
 const boxShadowColor = "rgba(0, 0, 0, 0.2)";
 
 export const DivCart = styled.div`
-  width: 90%;
+  width: 70%;
   margin: 0 auto;
   padding: 20px;
 `;
@@ -84,7 +84,7 @@ export const DivCartSub = styled.div`
 `;
 
 export const CartItem = styled.div`
-  width: 100%;
+  width: 90%;
   height: auto;
   background-color: ${secondaryColor};
   border-radius: 10px;

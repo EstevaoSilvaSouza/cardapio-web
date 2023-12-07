@@ -124,9 +124,7 @@ const Store = () => {
               //position: "relative",
             }}
           >
-            <div>
-              <h1>{filterItens?.Data?.Name}</h1>
-            </div>
+           
             <div>
               <img
                 style={{
@@ -135,6 +133,9 @@ const Store = () => {
                 src={filterItens.Data.ImageUrl}
               />
             </div>
+  
+            <h1>{filterItens?.Data?.Name}</h1> 
+            <p>.</p>
             <p>{filterItens?.Data?.Description}</p>
           </div>
 

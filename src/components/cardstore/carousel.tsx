@@ -62,9 +62,11 @@ const CarouselIndex = ({data}:{data:any}) => {
   swipeable
 >
         {data ? (
-        data.map(() => (
+        data.map((e:any) => (
+            <>
+             <img style={{width:'100%', height:'450px'}} src={e}/>
+            </>
             
-            <img style={{width:'100%', height:'500px'}} src="https://get.wallhere.com/photo/Stable-Diffusion-4k-ai-art-lion-digital-art-illustration-animals-2215636.jpg"/>
               ))
             ) : (
               <h1 style={{textAlign:'center'}}>Os dados não estão disponíveis no momento.</h1>

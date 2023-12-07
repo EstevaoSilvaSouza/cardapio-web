@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { DivHome, DivInput, InputHome, TitleHome } from "../style/Home";
+import { DivHome, DivInput, InputHome, TitleHome } from "../style/Search";
 import { useNavigate } from "react-router-dom";
 
 const Search = () => {
