@@ -1,15 +1,30 @@
-import { Box, Center, Container, Flex, Spacer } from "@chakra-ui/react"
+import { Box, Button, Center, Container, Flex, Input, InputGroup, InputLeftAddon, Spacer, Stack } from "@chakra-ui/react"
 import { Link } from "react-router-dom"
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import {useNavigate} from 'react-router-dom';
 import CarouselIndex from "../cardstore/carousel";
+import { useState } from "react";
 
 interface ItensMenu {
   Name?:string;
   PageRoute?:string;
 }
 
+
+const SearchPage = ({func,statFunc}:{func:any,statFunc:any}) => (
+  <Stack w={'80%'} margin={'0 auto'}>
+    <InputGroup>
+      <InputLeftAddon   children={'cardapio/loja/'}/>
+      <Input onChange={statFunc} placeholder="busque sua loja" textAlign={'center'} fontWeight={'500'}/>
+      <Button onClick={func} bg={'#D4E9E2'} w={250} size={'md'}>Buscar</Button>
+    </InputGroup>
+  </Stack>
+);
+
 const Home = () => {
+  const [search,SetSearch] = useState<string | null>(null);
+  const nav = useNavigate();
 
   const MenuItens:ItensMenu[] = [
     {Name:'Inicio', PageRoute:'/'},
@@ -17,10 +32,19 @@ const Home = () => {
     {Name:'Nosso Cardapio', PageRoute:'/'},
     {Name:'Impacto Social', PageRoute:'/'},
   ]
+
+  const handleInput = (e:React.ChangeEvent<HTMLInputElement>) => {
+    SetSearch(e.target.value);
+  }
+
+  const handleSearch = () => {
+    //console.log(search)
+    nav(`/cardapio/loja/${search}`)
+  }
   
   //logica aqui
   return (
-   <Box w={'100%'} h={'100vh'} bg={'#FFFFFF'} >
+   <Box   w={'100%'} h={'100vh'} bg={'#FFFFFF'} >
      
      <Box w={'100%'} bg={'white'} h={'auto'} justifyContent={'center'} alignItems={'center'} boxShadow="0px 4px 8px rgba(0, 0, 0, 0.228)">
       <Center>
@@ -40,7 +64,11 @@ const Home = () => {
       <Box w={'90%'} h={'500px'} margin={'0 auto'}>
       <CarouselIndex data={[{k:'_@'},{k:'@@#_'}]}/>
       </Box>
+
+      <div style={{height:'30px'}}></div>
      
+     <SearchPage func={handleSearch} statFunc={handleInput}/>
+
       <div style={{height:'30px'}}></div>
      
       <Box bg={'#D4E9E2'} w={'90%'} h={'250px'} margin={'0 auto'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
