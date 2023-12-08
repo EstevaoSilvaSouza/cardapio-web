@@ -12,10 +12,10 @@ interface ItensMenu {
 }
 
 const SearchPage = ({func,statFunc}:{func:any,statFunc:any}) => (
-  <Stack w={'80%'} margin={'0 auto'}>
+  <Stack w={'50%'} margin={'0 auto'} paddingBottom={'20px'}>
     <InputGroup>
       <InputLeftAddon   children={'cardapio/loja/'}/>
-      <Input onChange={statFunc} placeholder="busque sua loja" textAlign={'center'} fontWeight={'500'}/>
+      <Input bg={'#F2F2F2'} marginRight={3} onChange={statFunc} placeholder="busque sua loja" textAlign={'center'} fontWeight={'500'}/>
       <Button onClick={func} bg={'#6FCF97'} w={250} size={'md'} color={'white'}>
         Buscar
       </Button>
@@ -44,7 +44,7 @@ const Home = () => {
   
   //logica aqui
   return (
-   <Box   w={'100%'} h={'100vh'} bg={'#F2F2F2'} >
+   <Box   w={'100%'} h={'100vh'} bg={'#ffffff'}  >
      
      <Box w={'100%'} bg={'#ffffff'} h={'auto'} justifyContent={'center'} alignItems={'center'} boxShadow="0px 4px 8px rgba(0, 0, 0, 0.1)">
       <Center>
@@ -88,12 +88,19 @@ const Home = () => {
       </Center>
      </Box>
       
-     <Box w={'90%'} h={'500px'} margin={'0 auto'}>
-      <CarouselIndex data={["https://c1.wallpaperflare.com/preview/434/398/395/sign-windows-neon-urban.jpg","https://c0.wallpaperflare.com/preview/849/691/815/food-truck-illuminated-truck-vehicle.jpg", "https://c1.wallpaperflare.com/preview/751/331/688/automobile-automotive-bakery-car.jpg"]}/>
+     <Box w={'90%'} h={'500px'} margin={'0 auto'} >
+      <CarouselIndex data={["https://static.ifood-static.com.br/image/upload/t_banner/webapp/landing/groceries-background-mobile.png","https://static.ifood-static.com.br/image/upload/t_banner/webapp/landing/groceries-background-mobile.png"]}/>
      </Box>
 
      <div style={{height:'30px'}}></div>
      
+     <Box  display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} m={5}>
+      <h1 style={{fontSize:'45px', fontWeight:'bold'}}>
+      Faça mercado no Cardapiando
+      </h1>
+
+      <p style={{fontSize:'15px', fontWeight:'300'}}>Entregamos tudo o que precisa na porta da sua casa, de hortifruti a itens de limpeza</p>
+     </Box>
      <SearchPage func={handleSearch} statFunc={handleInput}/>
 
      <div style={{height:'30px'}}></div>

@@ -1,8 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Container from "../components/layout/container";
 import HeaderMenu from "../components/layout/header";
-import Store from "../components/pages/store";
-import StoreCart from "../components/pages/storeCart";
+import { RoutersBase } from "../context/router/base";
 
 const MainRouter = () => {
   return (
@@ -10,9 +9,11 @@ const MainRouter = () => {
       <HeaderMenu />
       <Container>
         <Routes>
-          <Route path="loja/:NameStore" element={<Store />} />
-          <Route path="loja/checkout/:NameStore" element={<StoreCart />} />
-
+          {RoutersBase.MainRouter.map((e) => (
+               <Route path={e.path} element={e.element} />
+          ))}
+         
+  
         </Routes>
       </Container>
     </>

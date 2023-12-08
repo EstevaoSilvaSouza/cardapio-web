@@ -15,6 +15,7 @@ import {
   H4,
 } from "../style/storecart";
 import { IProduct } from "./store";
+import { Box } from "@chakra-ui/react";
 
 const StoreCart = () => {
   const { StoreCart , removeCart} = useContext(StoreContext);
@@ -97,11 +98,22 @@ const StoreCart = () => {
                   </CartItem>
                 ))}
               </div>
+              
+              <Box w={'70%'} h={'100%'}>
 
-              <div style={{ width: "30%" }}>
-                <H2>Resumo do Pedido</H2>
-                <H4>Subtotal {SubTotal}</H4>
-              </div>
+                <div style={{ width: "60%" }}>
+                  <H2>Resumo do Pedido</H2>
+                  <H4>Subtotal {SubTotal}</H4>
+                </div>
+
+                <div style={{marginTop:'12px'}}>
+                <Button>
+                  Finalizar pedido
+                </Button>
+                </div>
+
+              </Box>
+           
             </DivCartSub>
           ) : (
             <>

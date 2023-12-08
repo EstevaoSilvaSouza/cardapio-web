@@ -1,14 +1,13 @@
 import {Routes, Route} from 'react-router-dom';
-import Home from '../components/pages/Home';
-import MainRouter from './MainRouter';
+import { RoutersBase } from '../context/router/base';
 
 const OtherRouter = () => {
     return (
         <>
             <Routes>
-
-                <Route path='/' element={<Home/>}/>
-                <Route path='/cardapio/*' element={<MainRouter/>}/>
+                {RoutersBase.OtherRoute.map((e) => (
+                    <Route path={e.path} element={e.element}/>
+                ))}
             </Routes>
         </>
     )
