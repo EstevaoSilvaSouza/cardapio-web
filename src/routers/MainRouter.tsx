@@ -10,7 +10,7 @@ const MainRouter = () => {
       <Container>
         <Routes>
           {RoutersBase.MainRouter.map((e) => (
-               <Route path={e.path} element={e.element} />
+               <Route key={e.path} id={e.path} path={e.path} element={e.element} />
           ))}
          
   

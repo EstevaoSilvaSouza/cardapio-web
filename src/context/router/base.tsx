@@ -1,6 +1,7 @@
 import Home from "../../components/pages/Home";
 import Store from "../../components/pages/store";
 import StoreCart from "../../components/pages/storeCart";
+import CreateProduct from "../../components/pages/user-panel/CreateProduct";
 import Login from "../../components/pages/user-panel/Login";
 import MainRouter from "../../routers/MainRouter";
 import PrivateRouter from "../../routers/PrivateRouter";
@@ -13,6 +14,11 @@ export const RoutersBase = {
         {path:'loja/:NameStore',element:<Store/>},
         {path:'loja/checkout/:NameStore',element:<StoreCart/>},
     ],
+    PrivateRouter: 
+    [
+        {path:'/home',element:<><h1>Pagina Home</h1></>},
+        {path:'/create_product',element:<CreateProduct/>}
+    ],
     OtherRoute:
     [
         {path:'/',element:<Home/>},
@@ -22,8 +28,5 @@ export const RoutersBase = {
         {path:'/*',element:<><h1>Pagina não existe</h1></>},
 
     ],
-    PrivateRouter: 
-    [
-        {path:'/home',element:<><h1>Pagina Home</h1></>}
-    ]
+    
 }

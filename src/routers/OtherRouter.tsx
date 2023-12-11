@@ -6,7 +6,7 @@ const OtherRouter = () => {
         <>
             <Routes>
                 {RoutersBase.OtherRoute.map((e) => (
-                    <Route path={e.path} element={e.element}/>
+                    <Route key={e.path} id={e.path} path={e.path} element={e.element}/>
                 ))}
             </Routes>
         </>

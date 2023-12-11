@@ -1,17 +1,19 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../Auth/AuthContexnt";
 
 const AuthCheck =  ({ children }:{children:JSX.Element}) => {
    
-    let logado = false;
+    const {Auth} = useContext(AuthContext);
     const nav = useNavigate();
+
     useEffect(() => {
-        if(!logado){
+        if(!Auth){
             nav('/painel/login');
         }
-    },[logado,nav])
+    },[Auth,nav])
 
-    return logado ? children : null;
+    return Auth ? children : null;
 };
 
 export default AuthCheck;

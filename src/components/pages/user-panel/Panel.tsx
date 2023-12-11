@@ -25,11 +25,11 @@ const Panel  = ({children}:{children:React.ReactNode}) => {
                 <Box mt={10} display={'flex'} flexDirection={'column'} >
                    
                     <CardItemMenu>
-                    <LinkItem to={'/'}>Inicio</LinkItem>
+                    <LinkItem to={'home'}>Inicio</LinkItem>
                     </CardItemMenu>
                 
                     <CardItemMenu>
-                    <LinkItem to={'/'}>Produtos</LinkItem>
+                    <LinkItem to={'create_product'}>Produtos</LinkItem>
                     </CardItemMenu>
 
                     <CardItemMenu>

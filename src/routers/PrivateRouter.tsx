@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Panel from "../components/pages/user-panel/Panel";
 import { RoutersBase } from "../context/router/base";
-import Login from "../components/pages/user-panel/Login";
 import AuthCheck from "../context/router/Auth.check";
 
 
@@ -12,7 +11,7 @@ const PrivateRouter = () => {
             <Panel>
                 <Routes>
                     {RoutersBase.PrivateRouter.map((e) => (
-                        <Route path={e.path} element={<AuthCheck>{e.element}</AuthCheck>}/>
+                        <Route key={e.path} id={e.path} path={e.path} element={<AuthCheck>{e.element}</AuthCheck>}/>
                     ))}
                 </Routes>
             </Panel>

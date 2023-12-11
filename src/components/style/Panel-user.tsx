@@ -57,6 +57,7 @@ export const CardItemMenu = styled.div`
 
 export const LinkItem = styled(Link)`
     margin-left: 20px;
+    height:auto;
     font-weight: 400;
     color: #333;
     text-decoration: none;
