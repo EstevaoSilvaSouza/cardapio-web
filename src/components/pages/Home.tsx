@@ -31,7 +31,7 @@ const Home = () => {
     {Name:'Inicio', PageRoute:'/'},
     {Name:'Rewards', PageRoute:'/'},
     {Name:'Nosso Cardapio', PageRoute:'/'},
-    {Name:'Crie sua Conta/Login', PageRoute:'/'},
+    {Name:'Crie sua Conta/Login', PageRoute:'/painel/login'},
   ]
 
   const handleInput = (e:React.ChangeEvent<HTMLInputElement>) => {
@@ -63,7 +63,7 @@ const Home = () => {
   }}
 >
   <Link
-    to={'/'}
+    to={String(e.PageRoute)}
     textDecoration="none"
     color="#2c3e50"
     fontSize="16px"

@@ -1,8 +1,10 @@
 import Home from "../../components/pages/Home";
 import Store from "../../components/pages/store";
 import StoreCart from "../../components/pages/storeCart";
-import Panel from "../../components/pages/user-panel/Panel";
+import Login from "../../components/pages/user-panel/Login";
 import MainRouter from "../../routers/MainRouter";
+import PrivateRouter from "../../routers/PrivateRouter";
+import AuthCheck from "./Auth.check";
 
 
 export const RoutersBase = {
@@ -15,7 +17,13 @@ export const RoutersBase = {
     [
         {path:'/',element:<Home/>},
         {path:'/cardapio/*',element:<MainRouter/>},
-        {path:'/cardapio/administration',element:<Panel/>},
+        {path:'/painel/*',element:<AuthCheck><PrivateRouter/></AuthCheck>},
+        {path:'/painel/login',element:<Login/>},
+        {path:'/*',element:<><h1>Pagina não existe</h1></>},
 
+    ],
+    PrivateRouter: 
+    [
+        {path:'/home',element:<><h1>Pagina Home</h1></>}
     ]
 }

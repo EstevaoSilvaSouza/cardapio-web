@@ -11,7 +11,7 @@ const BoxItens = () => (
 )
 
 
-const Panel  = () => {
+const Panel  = ({children}:{children:React.ReactNode}) => {
     return (
         <Box display={'flex'} w={'100%'}  h={'94vh'} bg={'#FFFFFF'}>
             <Flex w={'20%'} h={'100vh'} bg={'#F2F2F2'} display={'flex'} flexDirection={'column'} style={{borderRight: '1px solid #CCCCCC' }}>
@@ -54,7 +54,7 @@ const Panel  = () => {
             </Flex>
 
             <Box w={'90%'} bg={'#FFFFFF'}>
-
+                    {children}
             </Box>
         </Box>
     )
