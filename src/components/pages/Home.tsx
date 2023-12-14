@@ -89,7 +89,7 @@ const Home = () => {
      </Box>
       
      <Box w={'90%'} h={'500px'} margin={'0 auto'} >
-      <CarouselIndex data={["https://static.ifood-static.com.br/image/upload/t_banner/webapp/landing/groceries-background-mobile.png","https://static.ifood-static.com.br/image/upload/t_banner/webapp/landing/groceries-background-mobile.png"]}/>
+      <CarouselIndex key={'ok'} data={["https://static.ifood-static.com.br/image/upload/t_banner/webapp/landing/groceries-background-mobile.png","https://static.ifood-static.com.br/image/upload/t_banner/webapp/landing/groceries-background-mobile.png"]}/>
      </Box>
 
      <div style={{height:'30px'}}></div>

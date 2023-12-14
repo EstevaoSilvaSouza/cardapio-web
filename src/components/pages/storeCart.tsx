@@ -106,7 +106,7 @@ const StoreCart = () => {
                   <H4>Subtotal {SubTotal}</H4>
                 </div>
 
-                <div style={{marginTop:'12px'}}>
+                <div style={{marginTop:'12  px'}}>
                 <Button>
                   Finalizar pedido
                 </Button>

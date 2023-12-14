@@ -64,7 +64,7 @@ const CarouselIndex = ({data}:{data:any}) => {
         {data ? (
         data.map((e:any) => (
             <>
-             <img style={{width:'100%', height:'450px'}} src={e}/>
+             <img key={e} style={{width:'100%', height:'450px'}} src={e}/>
             </>
             
               ))
