@@ -10,7 +10,7 @@ const BreadCrumb = ({items}:BreadType) => {
     return (
         <>
             {items && (
-             <Breadcrumb ml={10} color={'#EB2937'} fontWeight={'500'} separator='/' boxShadow={'0 4px 8px rgba(0, 0, 0, 0.1)'} p={8} my={4}>
+             <Breadcrumb w={'90%'} ml={10} color={'#EB2937'} fontWeight={'500'} separator='/' boxShadow={'0 4px 8px rgba(0, 0, 0, 0.1)'} p={8} my={4}>
                 {items.map((e, index)  => (
                     <BreadcrumbItem key={index}>
                         <BreadcrumbLink  as={Link} to={`/${items[0]}/${e}`}>{e}</BreadcrumbLink>

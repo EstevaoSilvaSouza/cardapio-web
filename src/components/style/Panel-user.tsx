@@ -10,25 +10,46 @@ const fadeIn = keyframes`
     }
 `;
 
+const hoverEffect = keyframes`
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+`;
+
 export const CardMenuName = styled.div`
     display: flex;
     flex-direction: column;
-    align-self: center;
+    align-items: center;
     justify-content: center;
     margin-top: 15px;
-    width: 85%;
-    height: 60px;
-    border: 2px solid #EB2937;
+    width: 100%;
     background-color: #FFFFFF;
     border-radius: 8px;
+    animation: ${fadeIn} 0.5s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
 
     & > p, h1 {
         font-weight: 500;
-        margin: 0 auto;
+        margin: 0;
     }
 
     & > h1 {
         color: #009688;
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+
+    & > p {
+        color: #555;
+        font-size: 1rem;
     }
 `;
 
@@ -53,6 +74,8 @@ export const CardItemMenu = styled.div<{ active?: boolean }>`
             font-weight: 700;
             color: #fff;
         }
+
+        animation: ${hoverEffect} 0.3s ease;
     }
 
     @media (max-width: 768px) {
