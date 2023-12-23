@@ -1,16 +1,6 @@
-import { Box, Flex, Skeleton } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { CardItemMenu, CardMenuName, LinkItem } from "../../style/Panel-user";
-import { useState } from "react";
-
-
-
-const BoxItens = () => (
-    <>
-        <h1>Um item aqui</h1>
-    </>
-)
-
 
 const Panel  = ({children}:{children:React.ReactNode}) => {
 

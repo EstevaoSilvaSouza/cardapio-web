@@ -1,15 +1,31 @@
-import { Box, Button, Center, Container, Flex, Input, InputGroup, InputLeftAddon, Spacer, Stack } from "@chakra-ui/react"
+import { Box, Button, Center, Flex, Input, InputGroup, InputLeftAddon, Spacer, Stack } from "@chakra-ui/react"
 import { Link } from "react-router-dom"
-import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import {useNavigate} from 'react-router-dom';
 import CarouselIndex from "../cardstore/carousel";
 import { useState } from "react";
+import styled from "styled-components";
 
 interface ItensMenu {
   Name?:string;
   PageRoute?:string;
 }
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: #2c3e50;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  padding: 8px;
+  border-radius: 8px;
+  display: block;
+  text-align: center;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #ffffff;
+  }
+`;
+
 
 const SearchPage = ({func,statFunc}:{func:any,statFunc:any}) => (
   <Stack w={'50%'} margin={'0 auto'} paddingBottom={'20px'}>
@@ -62,21 +78,9 @@ const Home = () => {
     transform: 'scale(1.05)',
   }}
 >
-  <Link
-    to={String(e.PageRoute)}
-    textDecoration="none"
-    color="#2c3e50"
-    fontSize="16px"
-    letterSpacing="0.5px"
-    padding="8px"
-    borderRadius="8px"
-    display="block"
-    textAlign="center"
-    transition="color 0.3s"
-    _hover={{ color: '#ffffff' }}
-  >
-    {e.Name}
-  </Link>
+<StyledLink to={String(e.PageRoute)}>
+  {e.Name}
+</StyledLink>
 </Center>
 
 <Spacer />

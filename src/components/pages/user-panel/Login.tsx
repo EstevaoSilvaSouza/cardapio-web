@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Input } from "@chakra-ui/react";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../context/Auth/AuthContexnt";
 import { useNavigate } from "react-router-dom";
 
@@ -14,25 +14,14 @@ const Login = () => {
     console.log(payload);
   };
 
-  const loginUser = () => {
-    const loggin = Login(payload);
-    if (loggin) {
+  const loginUser = async () => {
+    const loggin = await Login(payload);
+    if (loggin?.token) {
       nav('/painel/home');
     }
   };
 
-  useEffect(() => {
-    const httpGetRoute = () => {
-      const { pathname } = window.location;
-      const arrayIndx = pathname.split('/');
-      if (arrayIndx.length >= 1) {
-        console.log('caiu aqui');
-        const removeIndex0 = arrayIndx.splice(1);
-        console.log(removeIndex0);
-      }
-    };
-    httpGetRoute();
-  }, []);
+  
 
   return (
     <Box
@@ -70,8 +59,9 @@ const Login = () => {
         </Box>
 
         <Input
-          name="Email"
+          name="Username"
           type="email"
+          onChange={handleInputChange}
           placeholder="Email"
           variant="filled"
           mb={4}
@@ -79,8 +69,9 @@ const Login = () => {
         />
 
         <Input
-          name="Senha"
+          name="Password"
           type="password"
+          onChange={handleInputChange}
           placeholder="Senha"
           variant="filled"
           mb={6}

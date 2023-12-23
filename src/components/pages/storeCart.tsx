@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../../context/Store/StoreContext";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -73,7 +73,7 @@ const StoreCart = () => {
           {StoreItems?.Items ? (
             <DivCartSub>
               <div style={{ width: "70%" }}>
-                {StoreItems.Items.map((e, idx) => (
+                {StoreItems.Items.map((e) => (
                   <CartItem key={e.Id}>
                     <ProductImage src={'ok'} alt={e.Name} />
                     <div>

@@ -1,11 +1,7 @@
 // Estilos CSS com Styled-Components
-import { Box, Button } from "@chakra-ui/react";
-import styled, { keyframes } from "styled-components";
+import { Box} from "@chakra-ui/react";
+import styled from "styled-components";
 
-const fadeIn = keyframes`
-    from { opacity: 0; }
-    to { opacity: 1; }
-`;
 
 export const BoxMain = styled(Box)`
     display: flex;

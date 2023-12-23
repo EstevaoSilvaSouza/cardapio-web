@@ -1,14 +1,7 @@
 import Carousel from "react-multi-carousel"
 import "react-multi-carousel/lib/styles.css";
-import {useNavigate} from 'react-router-dom'
 
 const CarouselIndex = ({data}:{data:any}) => {
-
-  const navigate = useNavigate();
-  const redirectViewPage = (id:string,nome:string,desc:string) => {
-    navigate(`/anuncio/${nome.split(' ').join('-')}_${desc.split(' ').join('-')} /${id}`);
-}
-
     return (
         <Carousel
         additionalTransfrom={0}
