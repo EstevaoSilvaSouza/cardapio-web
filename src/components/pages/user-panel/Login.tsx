@@ -14,6 +14,7 @@ interface Ilogin {
 const Login = () => {
   const [payload, setPayload] = useState<Ilogin | null >({Username:undefined,Password:undefined});
   const [load,setLoad] = useState<boolean | null> (false);
+  const [captc, setcaptch] = useState<string | null>(null);
   const { Login, contextValue } = useContext(AuthContext);
   const nav = useNavigate();
   const toast = useToast();
@@ -46,6 +47,7 @@ const Login = () => {
   const loginUser = async () => {
     if(payload?.Username === undefined || payload.Password === undefined ){
       toastLoagin('Atenção','Usuario/Senha em branco!',0 ,'info')
+      setcaptch(null);
     }
     else {
       setLoad(true);
@@ -60,6 +62,7 @@ const Login = () => {
       else{
         toastLoagin(loggin!.message,loggin!.message,loggin!.returnCode ,'error')
         setLoad(false);
+        setcaptch(null);
       }
     }    
   };
@@ -126,12 +129,15 @@ const Login = () => {
           color="#fff"
           _hover={{ bg: "#BF1D2E" }}
           mt={4}
+          hidden={!captc}
         >
          <EnterOutlined style={{marginRight:'10px'}} /> Acessar
         </Button>
+
         <ReCAPTCHA
-          sitekey="6LcOQTspAAAAAFu2cc4_WD1b4TpECsIAz11mhj4d"
-          onChange={(e) => console.log(e)}
+          style={{marginTop:'10px'}}
+          sitekey="6LdNQzspAAAAAGs5HkCvHKI7f5gE5lUA9J7tRIsy"
+          onChange={(e) => setcaptch(e)}
         />,
         <Box mt={4}>
           <a href="/" style={{ fontSize: '13px', color: "#EB2937" }}>
