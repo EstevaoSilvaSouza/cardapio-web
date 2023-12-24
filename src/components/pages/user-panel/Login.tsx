@@ -3,6 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/Auth/AuthContexnt";
 import { useNavigate } from "react-router-dom";
 import { EnterOutlined, WarningOutlined } from "@ant-design/icons";
+import ReCAPTCHA from "react-google-recaptcha";
+
 
 interface Ilogin {
   Username?:string;
@@ -127,7 +129,10 @@ const Login = () => {
         >
          <EnterOutlined style={{marginRight:'10px'}} /> Acessar
         </Button>
-
+        <ReCAPTCHA
+          sitekey="6LcOQTspAAAAAFu2cc4_WD1b4TpECsIAz11mhj4d"
+          onChange={(e) => console.log(e)}
+        />,
         <Box mt={4}>
           <a href="/" style={{ fontSize: '13px', color: "#EB2937" }}>
           <WarningOutlined />  Esqueceu a senha?
