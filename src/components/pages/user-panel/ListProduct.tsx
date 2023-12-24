@@ -11,11 +11,43 @@ import {
     Text,
     CardFooter,
     ButtonGroup,
+    Skeleton,
   } from "@chakra-ui/react";
-  import { useEffect, useState } from "react";
+  import {  useEffect, useState } from "react";
   import BreadCrumb from "../../layout/breadcrumb";
-  
-  const CardItem = () => (
+import { Link } from "react-router-dom";
+import { SecurityScanOutlined, SisternodeOutlined } from "@ant-design/icons";
+import { BaseApi } from "../../../context/BaseApi";
+
+interface Product {
+  Id: number;
+  Name: string;
+  Description: string;
+  Quantity: number;
+  Tag: string;
+  Type: string;
+  Value: number;
+  Id_Store: number;
+  Images: any[]; // You might want to replace 'any[]' with a more specific type for images
+}
+
+interface Store {
+  Id: number;
+  Name: string;
+  Type: string;
+  Description: string;
+  ImageUrl: string | null;
+  IdUser: number;
+  Products: Product[];
+}
+
+interface ApiResponse {
+  message: string;
+  returnCode: number;
+  Store: Store;
+}
+
+  const CardItem = (obj:Product) => (
     <>
       <Card
         maxW="sm"
@@ -26,15 +58,15 @@ import {
         _hover={{ transform: "scale(1.02)" }}
       >
         <Image
-          src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+          src={obj?.Images[0]?.Url}
           alt="Sofá duplo verde com pernas de madeira"
           borderTopRadius="lg"
         />
         <CardBody>
           <Stack spacing={2}>
-            <Heading size="md">Sofá para Sala de Estar</Heading>
+            <Heading size="md">{obj.Name}</Heading>
             <Text color="gray.600" fontSize="sm">
-              $450
+              ${obj.Value}
             </Text>
           </Stack>
         </CardBody>
@@ -47,7 +79,7 @@ import {
               borderRadius="md"
               _hover={{ bg: "#EB2937" }}
             >
-              Comprar Agora
+              Editar
             </Button>
             <Button
               variant="ghost"
@@ -55,7 +87,7 @@ import {
               borderRadius="md"
               _hover={{ bg: "#EB2937" }}
             >
-              Adicionar ao Carrinho
+              Excluir
             </Button>
           </ButtonGroup>
         </CardFooter>
@@ -65,7 +97,22 @@ import {
   
   const ListProduct = () => {
     const [httpRoute, setHttpRoute] = useState<string[] | null>([]);
-  
+    const [dataRepo,setDataRepo] = useState<ApiResponse | null>(null);
+    const [isLoad,setLoad] = useState<boolean>(false);
+    
+
+    const getItensProduct = async () => {
+      const {data} = await BaseApi.post('store/currentuser/store',{Name:"homolog"});
+      if(data){
+        setDataRepo(data);
+        setLoad(true);
+      }
+    }
+
+    useEffect(() => {
+      getItensProduct();
+    },[])
+
     useEffect(() => {
       const httpGetRoute = () => {
         const { pathname } = window.location;
@@ -77,17 +124,19 @@ import {
       };
       httpGetRoute();
     }, []);
-  
+
+
+    console.log(dataRepo?.Store)
     return (
       <>
         <Box
           w="100%"
-          h="100%"
+          h="100vh"
           bg="#F2F2F2"
           p={4}
           borderRadius="md"
           boxShadow="lg"
-          overflow="hidden"
+          overflowY="auto" 
         >
           <Box
             pt={6}
@@ -101,8 +150,20 @@ import {
               Lista de Produtos
             </Heading>
           </Box>
+
+          
   
           <BreadCrumb items={httpRoute} />
+         <Box mb={5} mt={5}>
+          <Button colorScheme="yellow" ml={4} as={Link} to={'/painel/create_product'}>
+          <SisternodeOutlined  style={{marginRight:'10px'}}/> Novo Produto
+            </Button>
+            <Button colorScheme="purple" ml={4}>
+            <SecurityScanOutlined style={{marginRight:'10px'}}/> Log
+            </Button>
+         </Box>
+        
+
           <Box mb={6} w="100%" display="flex" justifyContent="center" alignItems="center">
           <Input
             placeholder="Buscar"
@@ -113,18 +174,26 @@ import {
             Buscar
           </Button>
         </Box>
-  
+
+
+        <Skeleton w={'100%'} height={'100%'} isLoaded={isLoad}>
           <Box
-            w="95%"
-            display="flex"
-            flexWrap="wrap"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <CardItem />
-            <CardItem />
-            {/* Adicione mais CardItems conforme necessário */}
-          </Box>
+              w="95%"
+              h={'100%'}
+              display="flex"
+              flexWrap="wrap"
+              justifyContent="center"
+              alignItems="center"
+            >
+              {dataRepo?.Store.Products.map((e) => (
+              <CardItem key={e.Id}  Id={e.Id} Description={e.Description} Id_Store={e.Id_Store} Images={e.Images} Name={e.Name}
+                  Quantity={e.Quantity} Tag={e.Tag} Type={e.Type} Value={e.Value}
+              />
+              ))}             
+            </Box>
+       </Skeleton>
+
+       
         </Box>
       </>
     );

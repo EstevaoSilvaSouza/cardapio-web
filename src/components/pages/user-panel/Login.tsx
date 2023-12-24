@@ -1,12 +1,20 @@
-import { Box, Button, Flex, Input } from "@chakra-ui/react";
-import { useContext, useState } from "react";
+import { Box, Button, CircularProgress, Flex, Input, useToast } from "@chakra-ui/react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/Auth/AuthContexnt";
 import { useNavigate } from "react-router-dom";
+import { EnterOutlined, WarningOutlined } from "@ant-design/icons";
+
+interface Ilogin {
+  Username?:string;
+  Password?:string;
+}
 
 const Login = () => {
-  const [payload, setPayload] = useState({});
-  const { Login } = useContext(AuthContext);
+  const [payload, setPayload] = useState<Ilogin | null >({Username:undefined,Password:undefined});
+  const [load,setLoad] = useState<boolean | null> (false);
+  const { Login, contextValue } = useContext(AuthContext);
   const nav = useNavigate();
+  const toast = useToast();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -14,14 +22,45 @@ const Login = () => {
     console.log(payload);
   };
 
-  const loginUser = async () => {
-    const loggin = await Login(payload);
-    if (loggin?.token) {
-      nav('/painel/home');
-    }
-  };
+  const toastLoagin = (title:string,message:string,returncode:number,status: "info" | "warning" | "success" | "error" | "loading" | undefined) => {
+    toast({
+      title: title,
+      description: ` ${message} ${returncode === 5 ? '' : `StatusReturn: ${returncode }`}`,
+      status: status,
+      duration: 3000,
+      position:'top-right',
+      isClosable: true,
+    })
+  }
 
-  
+  useEffect(() => {
+    if(contextValue?.Token){
+      toastLoagin('Boas Vindas','Seja bem vindo de volta :)',30 ,'success')
+      nav('/painel/home')
+
+    }
+  })
+
+  const loginUser = async () => {
+    if(payload?.Username === undefined || payload.Password === undefined ){
+      toastLoagin('Atenção','Usuario/Senha em branco!',0 ,'info')
+    }
+    else {
+      setLoad(true);
+      const loggin = await Login(payload);
+    
+      if (loggin?.token && loggin?.returnCode === 5) {
+        console.log(loggin);
+        toastLoagin(loggin.message,loggin.message,loggin.returnCode ,'success')
+        setLoad(false);
+        nav('/painel/home');
+      }
+      else{
+        toastLoagin(loggin!.message,loggin!.message,loggin!.returnCode ,'error')
+        setLoad(false);
+      }
+    }    
+  };
 
   return (
     <Box
@@ -60,9 +99,9 @@ const Login = () => {
 
         <Input
           name="Username"
-          type="email"
+          type="text"
           onChange={handleInputChange}
-          placeholder="Email"
+          placeholder="Usuario"
           variant="filled"
           mb={4}
           focusBorderColor="#EB2937"
@@ -86,14 +125,24 @@ const Login = () => {
           _hover={{ bg: "#BF1D2E" }}
           mt={4}
         >
-          Acessar
+         <EnterOutlined style={{marginRight:'10px'}} /> Acessar
         </Button>
 
         <Box mt={4}>
           <a href="/" style={{ fontSize: '13px', color: "#EB2937" }}>
-            Esqueceu a senha?
+          <WarningOutlined />  Esqueceu a senha?
           </a>
         </Box>
+
+        {load && (
+          <>
+            <CircularProgress isIndeterminate color='green.300' style={{marginTop:'10px'}} />
+            <a style={{ fontSize: '13px', colorScheme:"green.300"}}>
+              Carregando aguarde!!
+              </a>
+          </>
+        )}
+        
       </Flex>
     </Box>
   );
