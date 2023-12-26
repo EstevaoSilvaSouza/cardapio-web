@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../Auth/AuthContexnt";
-import Login from "../../components/pages/user-panel/Login";
+import Login from "../../components/pages/account/Login";
 
 const AuthCheck =  ({ children }:{children:JSX.Element | JSX.Element[]}) => {
     const { Auth} = useContext(AuthContext);

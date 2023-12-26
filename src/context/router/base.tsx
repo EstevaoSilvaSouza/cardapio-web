@@ -3,7 +3,7 @@ import Store from "../../components/pages/store";
 import StoreCart from "../../components/pages/storeCart";
 import CreateProduct from "../../components/pages/user-panel/CreateProduct";
 import ListProduct from "../../components/pages/user-panel/ListProduct";
-import Login from "../../components/pages/user-panel/Login";
+import Login from "../../components/pages/account/Login";
 import MainRouter from "../../routers/MainRouter";
 import PrivateRouter from "../../routers/PrivateRouter";
 import AuthCheck from "./Auth.check";
