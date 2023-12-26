@@ -25,10 +25,12 @@ export const AuthProvider = ({children}:AuthProviderType) => {
           }
           else{
             setAuth(false);
+            window.location.reload();
           }
         }
         catch(error:any){
           setAuth(false);
+          window.location.reload();
         }
       }
 

@@ -36,12 +36,10 @@ const Login = () => {
     })
   }
 
-
   useEffect(() => {
     if(Auth){
       toastLoagin('Boas Vindas','Seja bem vindo de volta :)',30 ,'success')
       nav('/painel/home')
-
     }
   },[])
   
