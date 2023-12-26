@@ -7,13 +7,10 @@ export interface ILoginResponse {
     returnCode:number,
 }
 export interface IAuthContext {
-    Token:string | null;
     Login:(payload:any) => Promise<ILoginResponse | null>;
     Auth:boolean | null;
     Data:ILoginResponse | null;
     Logout :() => void;
-    contextValue: any;
-
 }
 
 export const AuthContext = createContext<IAuthContext>(null!);

@@ -9,7 +9,7 @@ import { HomeOutlined, MoneyCollectOutlined, SettingOutlined, ShopOutlined, Shop
 const Panel  = ({children}:{children:React.ReactNode}) => {
 
     const {Data} = useContext(AuthContext);
-    console.log(Data)
+    
     return (
 
         <Box display={'flex'} w={'100%'}  h={'94vh'} bg={'#FFFFFF'}>

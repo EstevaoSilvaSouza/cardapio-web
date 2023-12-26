@@ -1,5 +1,5 @@
 import { Box, Button, CircularProgress, Flex, Input, useToast } from "@chakra-ui/react";
-import { useContext, useEffect, useState } from "react";
+import { ButtonHTMLAttributes, useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../../context/Auth/AuthContexnt";
 import { useNavigate } from "react-router-dom";
 import { EnterOutlined, WarningOutlined } from "@ant-design/icons";
@@ -15,14 +15,14 @@ const Login = () => {
   const [payload, setPayload] = useState<Ilogin | null >({Username:undefined,Password:undefined});
   const [load,setLoad] = useState<boolean | null> (false);
   const [captc, setcaptch] = useState<string | null>(null);
-  const { Login, contextValue } = useContext(AuthContext);
+  const { Login } = useContext(AuthContext);
   const nav = useNavigate();
   const toast = useToast();
 
+  const btnSubmtRef = useRef<HTMLButtonElement>(null!);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setPayload((prev) => ({ ...prev, [name]: value }));
-    console.log(payload);
   };
 
   const toastLoagin = (title:string,message:string,returncode:number,status: "info" | "warning" | "success" | "error" | "loading" | undefined) => {
@@ -36,18 +36,22 @@ const Login = () => {
     })
   }
 
+  /*
   useEffect(() => {
-    if(contextValue?.Token){
+    if(true){
       toastLoagin('Boas Vindas','Seja bem vindo de volta :)',30 ,'success')
       nav('/painel/home')
 
     }
   })
+  */
 
   const loginUser = async () => {
+    btnSubmtRef.current.disabled = true;
     if(payload?.Username === undefined || payload.Password === undefined ){
       toastLoagin('Atenção','Usuario/Senha em branco!',0 ,'info')
       setcaptch(null);
+      //btnSubmtRef.current.hidden = false;
     }
     else {
       setLoad(true);
@@ -130,6 +134,7 @@ const Login = () => {
           _hover={{ bg: "#BF1D2E" }}
           mt={4}
           hidden={!captc}
+          ref={btnSubmtRef}
         >
          <EnterOutlined style={{marginRight:'10px'}} /> Acessar
         </Button>

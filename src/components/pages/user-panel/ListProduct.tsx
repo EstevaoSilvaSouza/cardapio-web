@@ -102,7 +102,7 @@ interface ApiResponse {
     
 
     const getItensProduct = async () => {
-      const {data} = await BaseApi.post('store/currentuser/store',{Name:"homolog"});
+      const {data} = await BaseApi.post('store/currentuser/store',{Name:"homolog"},{withCredentials:true});
       if(data){
         setDataRepo(data);
         setLoad(true);
@@ -125,8 +125,6 @@ interface ApiResponse {
       httpGetRoute();
     }, []);
 
-
-    console.log(dataRepo?.Store)
     return (
       <>
         <Box
