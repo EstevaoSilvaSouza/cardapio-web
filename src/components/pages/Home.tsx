@@ -3,8 +3,9 @@ import { Link } from "react-router-dom"
 import 'react-multi-carousel/lib/styles.css';
 import {useNavigate} from 'react-router-dom';
 import CarouselIndex from "../cardstore/carousel";
-import {  useState } from "react";
+import {  useContext, useState } from "react";
 import styled from "styled-components";
+import { AuthContext } from "../../context/Auth/AuthContexnt";
 
 interface ItensMenu {
   Name?:string;
@@ -39,20 +40,17 @@ const SearchPage = ({func,statFunc}:{func:any,statFunc:any}) => (
   </Stack>
 );
 
-const checkAuth = () => {
-  return localStorage.getItem("XToken-AuthGuard")
-}
-
 const Home = () => {
   const [search,SetSearch] = useState<string | null>(null);
   const nav = useNavigate();
+  const {Auth} = useContext(AuthContext);
 
 
   const MenuItens:ItensMenu[] = [
     {Name:'Inicio', PageRoute:'/'},
     {Name:'Rewards', PageRoute:'/'},
     {Name:'Nosso Cardapio', PageRoute:'/'},
-    {Name:`${checkAuth() ? 'Painel' : 'Crie sua Conta/Login'}`, PageRoute:'/painel/login'},
+    {Name:`${Auth ? 'Painel' : 'Crie sua Conta/Login'}`, PageRoute:'/painel/login'},
   ]
 
   const handleInput = (e:React.ChangeEvent<HTMLInputElement>) => {
