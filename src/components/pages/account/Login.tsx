@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Flex, Input, useToast } from "@chakra-ui/react";
+import { Box, Button, CircularProgress, Flex, Input, Tab, TabList, TabPanel, TabPanels, Tabs, useToast } from "@chakra-ui/react";
 import {  useContext,  useEffect,  useRef, useState } from "react";
 import { AuthContext } from "../../../context/Auth/AuthContexnt";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +15,7 @@ const Login = () => {
   const [payload, setPayload] = useState<Ilogin | null >({Username:undefined,Password:undefined});
   const [load,setLoad] = useState<boolean | null> (false);
   const [captc, setcaptch] = useState<string | null>(null);
+  const [isPage,setIsPage] = useState<string>('Login');
   const { Login, Auth } = useContext(AuthContext);
   const nav = useNavigate();
   const toast = useToast();
@@ -89,7 +90,7 @@ const Login = () => {
         padding="30px"
         position="relative"
       >
-        {/* Adicione a borda apenas na parte superior */}
+      
         <Box
           w="100%"
           h="8px"
@@ -99,12 +100,22 @@ const Login = () => {
           left="0"
           borderRadius="8px 8px 0 0"
         />
-
+        
+        <Tabs isFitted variant='enclosed'>
+          <TabList>
+            <Tab onClick={() => setIsPage('Login')}>Acessar</Tab>
+            <Tab onClick={() => setIsPage('Cadastro')}>Registro</Tab>
+          </TabList>
+        </Tabs>
+        
         <Box my={4}>
-          <h1 style={{ fontSize: '28px', color: '#EB2937' }}>Login</h1>
+          <h1 style={{ fontSize: '28px', color: '#EB2937' }}>{isPage}</h1>
         </Box>
 
-        <Input
+        { isPage === 'Login' 
+        ? 
+          <>
+                    <Input
           name="Username"
           type="text"
           onChange={handleInputChange}
@@ -123,6 +134,8 @@ const Login = () => {
           mb={6}
           focusBorderColor="#EB2937"
         />
+
+        
 
         <Button
           onClick={loginUser}
@@ -156,6 +169,92 @@ const Login = () => {
               </a>
           </>
         )}
+          </>
+        :  
+          <>
+                   <Input
+          name="Name"
+          type="text"
+          onChange={handleInputChange}
+          placeholder="Nome"
+          variant="filled"
+          mb={4}
+          focusBorderColor="#EB2937"
+          required={true}
+        />
+
+        <Input
+          name="FullName"
+          type="text"
+          onChange={handleInputChange}
+          placeholder="Sobrenome"
+          variant="filled"
+          mb={6}
+          focusBorderColor="#EB2937"
+        />
+
+        <Input
+          name="Username"
+          type="text"
+          onChange={handleInputChange}
+          placeholder="Usuario"
+          variant="filled"
+          mb={6}
+          focusBorderColor="#EB2937"
+        />
+        
+        <Input
+          name="Email"
+          type="email"
+          onChange={handleInputChange}
+          placeholder="Email"
+          variant="filled"
+          mb={6}
+          focusBorderColor="#EB2937"
+        />
+        <Input
+          name="Password"
+          type="password"
+          onChange={handleInputChange}
+          placeholder="Senha"
+          variant="filled"
+          mb={6}
+          focusBorderColor="#EB2937"
+        />
+
+        <Button
+          onClick={loginUser}
+          w="100%"
+          bg="#EB2937"
+          color="#fff"
+          _hover={{ bg: "#BF1D2E" }}
+          mt={4}
+          hidden={!captc}
+          ref={btnSubmtRef}
+        >
+         <EnterOutlined style={{marginRight:'10px'}} /> Acessar
+        </Button>
+
+        <ReCAPTCHA
+          style={{marginTop:'10px'}}
+          sitekey="6LdNQzspAAAAAGs5HkCvHKI7f5gE5lUA9J7tRIsy"
+          onChange={(e) => setcaptch(e)}
+        />,
+        
+
+        {load && (
+          <>
+            <CircularProgress isIndeterminate color='green.300' style={{marginTop:'10px'}} />
+            <a style={{ fontSize: '13px', colorScheme:"green.300"}}>
+              Carregando aguarde!!
+              </a>
+          </>
+        )}
+          </>
+      }
+       
+
+
         
       </Flex>
     </Box>

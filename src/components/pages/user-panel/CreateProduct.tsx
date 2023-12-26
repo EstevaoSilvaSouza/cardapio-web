@@ -13,6 +13,7 @@ import {
   } from "@chakra-ui/react";
   import { useEffect, useState } from "react";
   import BreadCrumb from "../../layout/breadcrumb";
+import { BaseApi } from "../../../context/BaseApi";
   
   const CreateProduct = () => {
     const [httpRoute, setHttpRoute] = useState<string[] | null>([]);
@@ -28,7 +29,8 @@ import {
       };
       httpGetRoute();
     }, []);
-  
+
+
     return (
       <Box w="100%" h="100vh" bg="#F2F2F2" fontFamily="Arial, sans-serif">
         <Box
