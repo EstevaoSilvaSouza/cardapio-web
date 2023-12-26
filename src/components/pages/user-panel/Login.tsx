@@ -1,5 +1,5 @@
 import { Box, Button, CircularProgress, Flex, Input, useToast } from "@chakra-ui/react";
-import {  useContext,  useEffect,  useRef, useState } from "react";
+import {  useContext,  useRef, useState } from "react";
 import { AuthContext } from "../../../context/Auth/AuthContexnt";
 import { useNavigate } from "react-router-dom";
 import { EnterOutlined, WarningOutlined } from "@ant-design/icons";
@@ -15,7 +15,7 @@ const Login = () => {
   const [payload, setPayload] = useState<Ilogin | null >({Username:undefined,Password:undefined});
   const [load,setLoad] = useState<boolean | null> (false);
   const [captc, setcaptch] = useState<string | null>(null);
-  const { Login, Auth } = useContext(AuthContext);
+  const { Login } = useContext(AuthContext);
   const nav = useNavigate();
   const toast = useToast();
 
@@ -36,14 +36,15 @@ const Login = () => {
     })
   }
 
-  
+  /*
   useEffect(() => {
-    if(Auth){
+    if(true){
       toastLoagin('Boas Vindas','Seja bem vindo de volta :)',30 ,'success')
       nav('/painel/home')
+
     }
-  },[])
-  
+  })
+  */
 
   const loginUser = async () => {
     btnSubmtRef.current.disabled = true;
