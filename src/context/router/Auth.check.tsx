@@ -3,9 +3,9 @@ import { AuthContext } from "../Auth/AuthContexnt";
 import Login from "../../components/pages/user-panel/Login";
 
 const AuthCheck =  ({ children }:{children:JSX.Element | JSX.Element[]}) => {
-    const { contextValue} = useContext(AuthContext);
+    const { Auth} = useContext(AuthContext);
 
-      if(!contextValue?.Token){
+      if(!Auth){
         return <Login/>
       }
       else{
