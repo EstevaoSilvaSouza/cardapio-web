@@ -42,7 +42,7 @@ const Login = () => {
       toastLoagin('Boas Vindas','Seja bem vindo de volta :)',30 ,'success')
       nav('/painel/home')
     }
-  })
+  },[])
   
 
   const loginUser = async () => {
