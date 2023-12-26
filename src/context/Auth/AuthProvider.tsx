@@ -19,7 +19,7 @@ export const AuthProvider = ({children}:AuthProviderType) => {
         
         try{
           const {data} = await BaseApi.get('user/authenticate-validate',{withCredentials:true});
-          if(data.returnCode === 5){
+          if(data.returnCode === 30){
             setAuth(true);
           }
           else{
