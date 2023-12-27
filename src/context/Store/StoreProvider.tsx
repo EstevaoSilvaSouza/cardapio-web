@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { IStoreCart, StoreContext } from "./StoreContext";
-import { IProduct } from "../../components/pages/store";
+import { IProduct } from "../../components/pages/store/store";
 
 export const StoreProvider = ({
   children,

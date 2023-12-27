@@ -1,5 +1,5 @@
 import { BtnsAdd, BtnsAddMore, CardDivStore } from "../style/storestyled";
-import { IProduct } from "../pages/store";
+import { IProduct } from "../pages/store/store";
 
 const CardStore = ({
   AddQuantity,

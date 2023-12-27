@@ -10,14 +10,16 @@ import {
     Image,
     InputGroup,
     InputRightElement,
+    Alert,
   } from "@chakra-ui/react";
-  import { useEffect, useState } from "react";
+  import React, { useEffect, useState } from "react";
   import BreadCrumb from "../../layout/breadcrumb";
 import { BaseApi } from "../../../context/BaseApi";
   
   const CreateProduct = () => {
     const [httpRoute, setHttpRoute] = useState<string[] | null>([]);
-  
+    const [payload,setPayload] = useState({});
+   
     useEffect(() => {
       const httpGetRoute = () => {
         const { pathname } = window.location;
@@ -30,6 +32,17 @@ import { BaseApi } from "../../../context/BaseApi";
       httpGetRoute();
     }, []);
 
+    const handleInputChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+      setPayload((prev) => ({...prev,[e.target.name]:e.target.value}));
+      console.log(payload)
+    }
+
+    const submitPayload = async () => {
+      const {data} = await BaseApi.post('store/create-product');
+      if(data.returnCode == 122){
+        console.log('cadastrado com sucesso')
+      }
+    }
 
     return (
       <Box w="100%" h="100vh" bg="#F2F2F2" fontFamily="Arial, sans-serif">
@@ -61,6 +74,8 @@ import { BaseApi } from "../../../context/BaseApi";
               </FormLabel>
               <Input
                 id="nome"
+                name="Name"
+                onChange={handleInputChange}
                 type="text"
                 bg="white"
                 borderColor="#EB2937"
@@ -76,6 +91,8 @@ import { BaseApi } from "../../../context/BaseApi";
                 <Input
                   id="tag"
                   type="text"
+                  name="Tag"
+                  onChange={handleInputChange}
                   bg="white"
                   borderColor="#EB2937"
                   _hover={{ borderColor: "#EB2937" }}
@@ -89,6 +106,8 @@ import { BaseApi } from "../../../context/BaseApi";
                 <Input
                   id="type"
                   type="text"
+                  name="Type"
+                  onChange={handleInputChange}
                   bg="white"
                   borderColor="#EB2937"
                   _hover={{ borderColor: "#EB2937" }}
@@ -103,6 +122,8 @@ import { BaseApi } from "../../../context/BaseApi";
               <Input
                 id="Quantity"
                 type="number"
+                name="Quantity"
+                onChange={handleInputChange}
                 bg="white"
                 borderColor="#EB2937"
                 _hover={{ borderColor: "#EB2937" }}
@@ -116,6 +137,8 @@ import { BaseApi } from "../../../context/BaseApi";
               <Input
                 id="Description"
                 type="text"
+                name="Description"
+                onChange={handleInputChange}
                 bg="white"
                 borderColor="#EB2937"
                 _hover={{ borderColor: "#EB2937" }}
@@ -129,6 +152,8 @@ import { BaseApi } from "../../../context/BaseApi";
               <Input
                 id="Value"
                 type="number"
+                name="Value"
+                onChange={handleInputChange}
                 bg="white"
                 borderColor="#EB2937"
                 _hover={{ borderColor: "#EB2937" }}
@@ -178,7 +203,7 @@ import { BaseApi } from "../../../context/BaseApi";
             </FormControl>
   
             <Flex justify="space-between">
-              <Button colorScheme="red" w="48%">
+              <Button onClick={submitPayload} colorScheme="red" w="48%">
                 Cadastrar
               </Button>
               <Button colorScheme="whatsapp" w="48%">

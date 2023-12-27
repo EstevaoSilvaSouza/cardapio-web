@@ -1,16 +1,16 @@
 import { useParams, useNavigate } from "react-router-dom";
-import CardStore from "../cardstore/cardstore";
+import CardStore from "../../cardstore/cardstore";
 import {
   Btns,
   BtnsAdd,
   DivBtns,
   MainDivStore,
   SubDivStore,
-} from "../style/storestyled";
+} from "../../style/storestyled";
 import { useEffect, useState, useContext } from "react";
-import { Send } from "../../context/api/SendApi";
+import { Send } from "../../../context/api/SendApi";
 import { AxiosResponse } from "axios";
-import { StoreContext } from "../../context/Store/StoreContext";
+import { StoreContext } from "../../../context/Store/StoreContext";
 
 export interface IProduct {
   Id: number;

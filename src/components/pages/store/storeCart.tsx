@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { StoreContext } from "../../context/Store/StoreContext";
+import { StoreContext } from "../../../context/Store/StoreContext";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   CartItem,
@@ -13,7 +13,7 @@ import {
   H2,
   H3,
   H4,
-} from "../style/storecart";
+} from "../../style/storecart";
 import { IProduct } from "./store";
 import { Box } from "@chakra-ui/react";
 

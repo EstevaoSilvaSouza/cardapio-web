@@ -1,10 +1,9 @@
-import { Box, Button, CircularProgress, Flex, Input, Tab, TabList, TabPanel, TabPanels, Tabs, useToast } from "@chakra-ui/react";
+import { Box, Button, CircularProgress, Flex, Input, Tab, TabList, Tabs, useToast } from "@chakra-ui/react";
 import {  useContext,  useEffect,  useRef, useState } from "react";
 import { AuthContext } from "../../../context/Auth/AuthContexnt";
 import { useNavigate } from "react-router-dom";
 import { EnterOutlined, WarningOutlined } from "@ant-design/icons";
 import ReCAPTCHA from "react-google-recaptcha";
-
 
 interface Ilogin {
   Username?:string;
@@ -21,6 +20,8 @@ const Login = () => {
   const toast = useToast();
 
   const btnSubmtRef = useRef<HTMLButtonElement>(null!);
+  const inputRef = useRef<HTMLInputElement>(null!);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setPayload((prev) => ({ ...prev, [name]: value }));
@@ -38,6 +39,7 @@ const Login = () => {
   }
 
   useEffect(() => {
+    inputRef.current.focus();
     if(Auth){
       toastLoagin('Boas Vindas','Seja bem vindo de volta :)',30 ,'success')
       nav('/painel/home')
@@ -57,7 +59,6 @@ const Login = () => {
       const loggin = await Login(payload);
     
       if (loggin?.token && loggin?.returnCode === 5) {
-        console.log(loggin);
         toastLoagin(loggin.message,loggin.message,loggin.returnCode ,'success')
         setLoad(false);
         nav('/painel/home');
@@ -120,6 +121,7 @@ const Login = () => {
           type="text"
           onChange={handleInputChange}
           placeholder="Usuario"
+          ref={inputRef}
           variant="filled"
           mb={4}
           focusBorderColor="#EB2937"
