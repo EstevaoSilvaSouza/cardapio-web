@@ -10,16 +10,28 @@ import {
     Image,
     InputGroup,
     InputRightElement,
-    Alert,
   } from "@chakra-ui/react";
   import React, { useEffect, useState } from "react";
   import BreadCrumb from "../../layout/breadcrumb";
 import { BaseApi } from "../../../context/BaseApi";
-  
+  import { useNavigate } from "react-router-dom";
+
+
   const CreateProduct = () => {
     const [httpRoute, setHttpRoute] = useState<string[] | null>([]);
     const [payload,setPayload] = useState({});
-   
+    const nav = useNavigate();
+    
+    const toastLoagin = (title:string,message:string,returncode:number,status: "info" | "warning" | "success" | "error" | "loading" | undefined) => {
+      toast({
+        title: title,
+        description: ` ${message} ${returncode === 5 ? '' : `StatusReturn: ${returncode }`}`,
+        status: status,
+        duration: 3000,
+        position:'top-right',
+        isClosable: true,
+      })
+    }
     useEffect(() => {
       const httpGetRoute = () => {
         const { pathname } = window.location;
@@ -40,7 +52,8 @@ import { BaseApi } from "../../../context/BaseApi";
     const submitPayload = async () => {
       const {data} = await BaseApi.post('store/currentstore/newProduct',payload,{withCredentials:true});
       if(data){
-        console.log('cadastrado com sucesso')
+        toastLoagin('Sucesso na criação','Produto cadastrado com sucesso!',30 ,'success')
+        nav('painel/list_product');
       }
     }
 
@@ -206,7 +219,7 @@ import { BaseApi } from "../../../context/BaseApi";
               <Button onClick={submitPayload} colorScheme="red" w="48%">
                 Cadastrar
               </Button>
-              <Button colorScheme="whatsapp" w="48%">
+              <Button onClick={() => nav('painel/list_product')} colorScheme="whatsapp" w="48%">
                 Voltar
               </Button>
             </Flex>
@@ -217,3 +230,7 @@ import { BaseApi } from "../../../context/BaseApi";
   };
   
   export default CreateProduct;
+
+function toast(arg0: { title: string; description: string; status: "info" | "warning" | "success" | "error" | "loading" | undefined; duration: number; position: string; isClosable: boolean; }) {
+  throw new Error("Function not implemented.");
+}
