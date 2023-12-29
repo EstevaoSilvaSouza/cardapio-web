@@ -4,14 +4,17 @@ import { AuthContext } from "../../../context/Auth/AuthContexnt";
 import { useNavigate } from "react-router-dom";
 import { EnterOutlined, WarningOutlined } from "@ant-design/icons";
 import ReCAPTCHA from "react-google-recaptcha";
+import { BaseApi } from "../../../context/BaseApi";
 
 interface Ilogin {
   Username?:string;
   Password?:string;
+  Email?:string;
+  FullName?:string;
 }
 
 const Login = () => {
-  const [payload, setPayload] = useState<Ilogin | null >({Username:undefined,Password:undefined});
+  const [payload, setPayload] = useState<Ilogin | null >({Username:undefined,Password:undefined, Email:undefined, FullName:undefined});
   const [load,setLoad] = useState<boolean | null> (false);
   const [captc, setcaptch] = useState<string | null>(null);
   const [isPage,setIsPage] = useState<string>('Login');
@@ -46,6 +49,21 @@ const Login = () => {
     }
   },[])
   
+  const submitNewUser = async () => {
+    if(payload?.Username === undefined || payload.Password === undefined ){
+      toastLoagin('Atenção','Usuario/Senha em branco!',0 ,'info')
+      setcaptch(null);
+      //btnSubmtRef.current.hidden = false;
+    }
+    else {
+      setLoad(true);
+      const {data} = await BaseApi.post('user/create-user',payload)
+      if(data){
+        nav('/painel/home')
+      }
+      
+    }    
+  }
 
   const loginUser = async () => {
     btnSubmtRef.current.disabled = true;
@@ -225,7 +243,7 @@ const Login = () => {
         />
 
         <Button
-          onClick={loginUser}
+          onClick={submitNewUser}
           w="100%"
           bg="#EB2937"
           color="#fff"
@@ -234,7 +252,7 @@ const Login = () => {
           hidden={!captc}
           ref={btnSubmtRef}
         >
-         <EnterOutlined style={{marginRight:'10px'}} /> Acessar
+         <EnterOutlined style={{marginRight:'10px'}} /> Cadastrar
         </Button>
 
         <ReCAPTCHA
