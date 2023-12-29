@@ -57,7 +57,8 @@ const Login = () => {
     }
     else {
       setLoad(true);
-      const {data} = await BaseApi.post('user/create-user',payload)
+      const dataa = {...payload,['Type']:'Normal',['Status']:true,['IsActive']:true}
+      const {data} = await BaseApi.post('user/create-user',dataa)
       if(data){
         nav('/painel/home')
       }
