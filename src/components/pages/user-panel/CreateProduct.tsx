@@ -38,7 +38,7 @@ import { BaseApi } from "../../../context/BaseApi";
     }
 
     const submitPayload = async () => {
-      const {data} = await BaseApi.post('store/currentstore/newProduct');
+      const {data} = await BaseApi.post('store/currentstore/newProduct',payload,{withCredentials:true});
       if(data){
         console.log('cadastrado com sucesso')
       }
