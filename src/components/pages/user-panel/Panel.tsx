@@ -19,6 +19,7 @@ const Panel  = ({children}:{children:React.ReactNode}) => {
                 <CardMenuName>
                     <p>Loja do - {Data?.data}</p>
                     <h1>Ativo</h1>
+                    <h4>V. 1.0.0d</h4>
                  
                 </CardMenuName>
 

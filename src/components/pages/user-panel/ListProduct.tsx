@@ -21,6 +21,7 @@ import { SecurityScanOutlined, SisternodeOutlined } from "@ant-design/icons";
 import { BaseApi } from "../../../context/BaseApi";
 import ModalCustom from "../../layout/Modal";
 import CreateProduct from "./CreateProduct";
+import EditProduct from "./EditProduct";
 
 interface Product {
   Id: number;
@@ -85,7 +86,7 @@ interface modalSettings {
               colorScheme="red"
               borderRadius="md"
               _hover={{ bg: "#EB2937" }}
-              onClick={() => {onOpen(); setSettingsModel((prev:modalSettings) => ({...prev,Name:'Cadastro Novo Produto', Element:<CreateProduct key={'g'}/>}))}}
+              onClick={() => {onOpen(); setSettingsModel((prev:modalSettings) => ({...prev,Name:'Editar Produto', Element:<EditProduct id={obj.Id} key={'g'}/>}))}}
             >
               Editar
             </Button>
