@@ -4,7 +4,7 @@ import Login from "../../components/pages/account/Login";
 
 const AuthCheck =  ({ children }:{children:JSX.Element | JSX.Element[]}) => {
     const { Auth} = useContext(AuthContext);
-
+    
       if(!Auth){
         return <Login/>
       }

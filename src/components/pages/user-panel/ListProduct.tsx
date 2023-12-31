@@ -12,12 +12,15 @@ import {
     CardFooter,
     ButtonGroup,
     Skeleton,
+    useDisclosure,
   } from "@chakra-ui/react";
   import {  useEffect, useState } from "react";
   import BreadCrumb from "../../layout/breadcrumb";
 import { Link } from "react-router-dom";
 import { SecurityScanOutlined, SisternodeOutlined } from "@ant-design/icons";
 import { BaseApi } from "../../../context/BaseApi";
+import ModalCustom from "../../layout/Modal";
+import CreateProduct from "./CreateProduct";
 
 interface Product {
   Id: number;
@@ -46,8 +49,12 @@ interface ApiResponse {
   returnCode: number;
   Store: Store;
 }
+interface modalSettings {
+  Name?:string;
+  Element?:JSX.Element | JSX.Element[]
+}
 
-  const CardItem = (obj:Product) => (
+  const CardItem = ({obj,onOpen,setSettingsModel}:{obj:Product,onOpen:any,setSettingsModel:any}) => (
     <>
       <Card
         maxW="sm"
@@ -78,6 +85,7 @@ interface ApiResponse {
               colorScheme="red"
               borderRadius="md"
               _hover={{ bg: "#EB2937" }}
+              onClick={() => {onOpen(); setSettingsModel((prev:modalSettings) => ({...prev,Name:'Cadastro Novo Produto', Element:<CreateProduct key={'g'}/>}))}}
             >
               Editar
             </Button>
@@ -99,8 +107,8 @@ interface ApiResponse {
     const [httpRoute, setHttpRoute] = useState<string[] | null>([]);
     const [dataRepo,setDataRepo] = useState<ApiResponse | null>(null);
     const [isLoad,setLoad] = useState<boolean>(false);
-    
-
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [modalSettings,setSettingsModel] = useState<modalSettings | null>({Name:undefined, Element:undefined});
     const getItensProduct = async () => {
       const {data} = await BaseApi.post('store/currentuser/store',{Name:"homolog"},{withCredentials:true});
       if(data){
@@ -108,6 +116,7 @@ interface ApiResponse {
         setLoad(true);
       }
     }
+    
 
     useEffect(() => {
       getItensProduct();
@@ -153,7 +162,7 @@ interface ApiResponse {
   
           <BreadCrumb items={httpRoute} />
          <Box mb={5} mt={5}>
-          <Button colorScheme="yellow" ml={4} as={Link} to={'/painel/create_product'}>
+          <Button colorScheme="yellow" ml={4} as={Link} onClick={() => {onOpen(); setSettingsModel((prev) => ({...prev,Name:'Cadastro Novo Produto', Element:<CreateProduct key={'c'}/>}))}}>
           <SisternodeOutlined  style={{marginRight:'10px'}}/> Novo Produto
             </Button>
             <Button colorScheme="purple" ml={4}>
@@ -161,7 +170,7 @@ interface ApiResponse {
             </Button>
          </Box>
         
-
+          <ModalCustom titleModal={modalSettings!.Name} size="xl" isOpen={isOpen} onClose={onClose} onOpen={onOpen} element={modalSettings!.Element} />
           <Box mb={6} w="100%" display="flex" justifyContent="center" alignItems="center">
           <Input
             placeholder="Buscar"
@@ -184,9 +193,7 @@ interface ApiResponse {
               alignItems="center"
             >
               {dataRepo?.Store.Products.map((e) => (
-              <CardItem key={e.Id}  Id={e.Id} Description={e.Description} Id_Store={e.Id_Store} Images={e.Images} Name={e.Name}
-                  Quantity={e.Quantity} Tag={e.Tag} Type={e.Type} Value={e.Value}
-              />
+              <CardItem obj={e} onOpen={onOpen} setSettingsModel={setSettingsModel}/>
               ))}             
             </Box>
        </Skeleton>

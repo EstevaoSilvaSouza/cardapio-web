@@ -13,11 +13,12 @@ import {
     Image
   } from "@chakra-ui/react";
   import React, {  useState } from "react";
+
 import { BaseApi } from "../../../context/BaseApi";
   import { useNavigate } from "react-router-dom";
 
 
-  const CreateProduct = () => {
+  const EditProduct = ({id}:{id:number}) => {
     const [payload,setPayload] = useState({});
     const nav = useNavigate();
     const toast = useToast();
@@ -32,10 +33,8 @@ import { BaseApi } from "../../../context/BaseApi";
       })
     }
   
-
     const handleInputChange = (e:React.ChangeEvent<HTMLInputElement>) => {
       setPayload((prev) => ({...prev,[e.target.name]:e.target.value}));
-      console.log(payload)
     }
 
     const submitPayload = async () => {
@@ -57,7 +56,7 @@ return (
       borderBottomRadius="15px"
     >
       <Heading as="h3" size="xl">
-        Cadastrar novo produto
+        Editar novo produto
       </Heading>
     </Box>
   
@@ -207,7 +206,7 @@ return (
 
         <Flex justify="space-between">
           <Button onClick={submitPayload} colorScheme="red" w="48%" bg="#EB2937" color="white" transition="background-color 0.3s, color 0.3s">
-            Cadastrar
+            Salvar
           </Button>
         </Flex>
       </VStack>
@@ -215,4 +214,4 @@ return (
   </Box>
 )
 }
-  export default CreateProduct;
+  export default EditProduct;
