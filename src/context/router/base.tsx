@@ -7,6 +7,7 @@ import Login from "../../components/pages/account/Login";
 import MainRouter from "../../routers/MainRouter";
 import PrivateRouter from "../../routers/PrivateRouter";
 import AuthCheck from "./Auth.check";
+import CreateStore from "../../components/pages/user-panel/CreateStore";
 
 
 export const RoutersBase = {
@@ -25,6 +26,7 @@ export const RoutersBase = {
     OtherRoute:
     [
         {path:'/',element:<Home/>},
+        {path:'/dev',element:<CreateStore/>},
         {path:'/cardapio/*',element:<MainRouter/>},
         {path:'/painel/*',element:<AuthCheck><PrivateRouter/></AuthCheck>},
         {path:'/painel/login',element:<Login/>},
