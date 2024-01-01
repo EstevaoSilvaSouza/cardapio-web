@@ -60,7 +60,7 @@ const Login = () => {
       const { data } = await BaseApi.post('user/create-user', dataa)
       toastLogin('Sucesso', 'Conta registrada com sucesso, crie sua store :)', 30, 'success')
       if (data) {
-        nav(`/dev?token${123}`)
+        nav(`/dev?token=${123}`)
       }
     }
   }
