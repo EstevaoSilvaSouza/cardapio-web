@@ -48,7 +48,7 @@ interface IProduct {
     }
 
     const loadProduct = async ( ) => {
-      const {data} = await BaseApi.post('store/currentstore/findProduct',id);
+      const {data} = await BaseApi.post('store/currentstore/findProduct',{Id:id});
       if(data){
         setPayload(data.produto);
       }
