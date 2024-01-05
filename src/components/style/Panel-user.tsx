@@ -83,7 +83,7 @@ export const CardItemMenu = styled.div<{ active?: boolean }>`
     }
 
     @media only screen and (max-width: 600px) {
-        padding: 15px;
+        padding: 1px;
         height: auto;
     }
 `;
