@@ -14,8 +14,12 @@ export const SubDivStore = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* Alinhar itens ao início quando em layout de coluna */
   padding: 15px;
+
+  @media screen and (max-width: 767px) {
+    margin-top: 20px; /* Adicionar margem para criar espaço entre DivBtns e SubDivStore */
+  }
 `;
 
 export const CardDivStore = styled.div<{ $tamanho?: string }>`
@@ -46,6 +50,7 @@ export const DivBtns = styled.div`
 
   @media screen and (max-width: 767px) {
     flex-direction: column;
+    align-items: center; /* Centralizar itens quando em layout de coluna */
   }
 `;
 

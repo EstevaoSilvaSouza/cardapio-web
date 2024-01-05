@@ -66,7 +66,7 @@ interface modalSettings {
         _hover={{ transform: "scale(1.02)" }}
       >
         <Image
-          src={obj?.Images[0]?.Url}
+          src={obj?.Images[0]?.Url || "https://s2.glbimg.com/IaEnP49buSdSUDftlMxVrq3-ZDo=/940x523/e.glbimg.com/og/ed/f/original/2019/04/26/loucosporti1.jpg"}
           alt="Sofá duplo verde com pernas de madeira"
           borderTopRadius="lg"
         />

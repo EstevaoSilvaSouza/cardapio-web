@@ -54,7 +54,6 @@ interface IProduct {
       }else {
         toastLoagin('Erro busca',data,30 ,'error')
       }
-     
     }
 
     useEffect(() => {
@@ -66,7 +65,6 @@ interface IProduct {
         const {data} = await BaseApi.post('store/currentstore/updateProduct',payload,{withCredentials:true});
         if(data){
           toastLoagin('Atualizado com sucesso','Produto atualizado com sucesso!',30 ,'success')
-          nav('/list_product');
         }
        
       }
