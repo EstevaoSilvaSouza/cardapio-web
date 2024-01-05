@@ -5,6 +5,7 @@ import {
   Btns,
   BtnsAdd,
   DivBtns,
+  DivDivider,
   MainDivStore,
   SubDivStore,
 } from "../../style/storestyled";
@@ -139,7 +140,7 @@ const Store = () => {
             <p>.</p>
             <p>{filterItens?.Data?.Description}</p>
           </div>
-
+          <DivDivider/>
           <DivBtns>
             {filterItens.Categoria && (
               <>
@@ -162,6 +163,7 @@ const Store = () => {
               </>
             )}
           </DivBtns>
+          <DivDivider/>
           <SubDivStore>
             {filterItens?.Data.Products?.map((e: any) => (
               <CardStore

@@ -124,3 +124,12 @@ export const BtnCart = styled.button`
     margin-top: 20px;
   }
 `;
+
+export const DivDivider =styled.div`
+  display:none;
+
+  @media only screen and (max-width:767px){
+    display:block;
+    width:45px
+  }
+`;
