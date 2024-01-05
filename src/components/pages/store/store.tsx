@@ -13,6 +13,7 @@ import { useEffect, useState, useContext } from "react";
 import { Send } from "../../../context/api/SendApi";
 import { AxiosResponse } from "axios";
 import { StoreContext } from "../../../context/Store/StoreContext";
+import { Box, Heading } from "@chakra-ui/react";
 
 export interface IProduct {
   Id: number;
@@ -165,19 +166,35 @@ const Store = () => {
           </DivBtns>
           <DivDivider/>
           <SubDivStore>
-            {filterItens.Categoria?.map((s:any) => (
-              <div style={{width:'100%'}}>
-              <h1>{s}</h1>
-                {filterItens?.Data.Products?.filter((e: any) => e.Type === s).map((t:any) => (
-                    <CardStore
-                      key={t?.Id}
-                      AddQuantity={AddQuantity}
-                      AddCart={AddCartItem}
-                      obj={t}
-                    />
-                ))}
-              </div>
-            ) )}
+          {filterItens.Categoria?.map((category: any) => (
+          <Box
+            key={category}
+            width="100%"
+            display="flex"
+            flexDirection="column"
+            mb="4" // Adicionando margem inferior entre as categorias
+          >
+            <Heading as="h1" size="lg" mb="2">
+              {category}
+            </Heading>
+            <Box
+              width="100%"
+              display="flex"
+              flexDirection="row"
+              flexWrap="wrap"
+              gap="4" // Adicionando espaçamento entre os itens
+            >
+              {filterItens?.Data.Products?.filter((item: any) => item.Type === category).map((item: any) => (
+                <CardStore
+                  key={item?.Id}
+                  AddQuantity={AddQuantity}
+                  AddCart={AddCartItem}
+                  obj={item}
+                />
+              ))}
+            </Box>
+          </Box>
+        ))}
             
           </SubDivStore>
         </>
