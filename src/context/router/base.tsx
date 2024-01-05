@@ -1,7 +1,6 @@
 import Home from "../../components/pages/Home";
 import Store from "../../components/pages/store/store";
 import StoreCart from "../../components/pages/store/storeCart";
-import CreateProduct from "../../components/pages/user-panel/CreateProduct";
 import ListProduct from "../../components/pages/user-panel/ListProduct";
 import Login from "../../components/pages/account/Login";
 import MainRouter from "../../routers/MainRouter";
@@ -19,7 +18,6 @@ export const RoutersBase = {
     PrivateRouter: 
     [
         {path:'/home',element:<><h1>Pagina Home</h1></>},
-        {path:'/create_product',element:<CreateProduct/>},
         {path:'/list_product',element:<ListProduct/>},
         {path:'/painel',element:<ListProduct/>}
     ],

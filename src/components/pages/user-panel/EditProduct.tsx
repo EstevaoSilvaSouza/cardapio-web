@@ -12,14 +12,24 @@ import {
     InputGroup,
     Image
   } from "@chakra-ui/react";
-  import React, {  useState } from "react";
+  import React, {  useEffect, useState } from "react";
 
 import { BaseApi } from "../../../context/BaseApi";
-  import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
+interface IProduct {
+  Id?: number;
+  Name?: string;
+  Type?: string;
+  Value?: number;
+  Quantity?: number;
+  Description?: string;
+  Tag?: string;
+  Id_Store?:number;
+}
 
   const EditProduct = ({id}:{id:number}) => {
-    const [payload,setPayload] = useState({});
+    const [payload,setPayload] = useState<IProduct | null>({});
     const nav = useNavigate();
     const toast = useToast();
     const toastLoagin = (title:string,message:string,returncode:number,status: "info" | "warning" | "success" | "error" | "loading" | undefined) => {
@@ -37,11 +47,22 @@ import { BaseApi } from "../../../context/BaseApi";
       setPayload((prev) => ({...prev,[e.target.name]:e.target.value}));
     }
 
-    const submitPayload = async () => {
-      const {data} = await BaseApi.post('store/currentstore/newProduct',payload,{withCredentials:true});
+    const loadProduct = async ( ) => {
+      const {data} = await BaseApi.post('store/currentstore/findProduct',id);
       if(data){
-        toastLoagin('Sucesso na criação','Produto cadastrado com sucesso!',30 ,'success')
-        nav('painel/list_product');
+        setPayload(data.produto);
+      }
+    }
+
+    useEffect(() => {
+      loadProduct();
+    })
+
+    const submitPayload = async () => {
+      const {data} = await BaseApi.post('store/currentstore/updateProduct',payload,{withCredentials:true});
+      if(data){
+        toastLoagin('Atualizado com sucesso','Produto atualizado com sucesso!',30 ,'success')
+        nav('/list_product');
       }
     }
 
@@ -59,8 +80,9 @@ return (
         Editar novo produto
       </Heading>
     </Box>
-  
-    <Box
+  {payload && (
+    <>
+      <Box
       w="90%"
       mx="auto"
       bg="white"
@@ -78,6 +100,7 @@ return (
             id="nome"
             name="Name"
             onChange={handleInputChange}
+            value={payload.Name ? payload.Name : ''}
             type="text"
             bg="white"
             border="1px solid #ccc"
@@ -94,6 +117,7 @@ return (
               id="tag"
               type="text"
               name="Tag"
+              value={payload.Tag ? payload.Tag : ''}
               onChange={handleInputChange}
               bg="white"
               border="1px solid #ccc"
@@ -109,6 +133,7 @@ return (
               id="type"
               type="text"
               name="Type"
+              value={payload.Type ? payload.Type : ''}
               onChange={handleInputChange}
               bg="white"
               border="1px solid #ccc"
@@ -125,6 +150,7 @@ return (
             id="Quantity"
             type="number"
             name="Quantity"
+            value={payload.Quantity ? payload.Quantity : ''}
             onChange={handleInputChange}
             bg="white"
             border="1px solid #ccc"
@@ -140,6 +166,7 @@ return (
             id="Description"
             type="text"
             name="Description"
+            value={payload.Description ? payload.Description : ''}
             onChange={handleInputChange}
             bg="white"
             border="1px solid #ccc"
@@ -155,6 +182,7 @@ return (
             id="Value"
             type="number"
             name="Value"
+            value={payload.Value ? payload.Value : ''}
             onChange={handleInputChange}
             bg="white"
             border="1px solid #ccc"
@@ -211,6 +239,9 @@ return (
         </Flex>
       </VStack>
     </Box>
+    </>
+  )}
+  
   </Box>
 )
 }
