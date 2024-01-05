@@ -51,19 +51,31 @@ interface IProduct {
       const {data} = await BaseApi.post('store/currentstore/findProduct',{Id:id});
       if(data){
         setPayload(data.produto);
+      }else {
+        toastLoagin('Erro busca',data,30 ,'error')
       }
+     
     }
 
     useEffect(() => {
       loadProduct();
-    })
+    },[])
 
     const submitPayload = async () => {
-      const {data} = await BaseApi.post('store/currentstore/updateProduct',payload,{withCredentials:true});
-      if(data){
-        toastLoagin('Atualizado com sucesso','Produto atualizado com sucesso!',30 ,'success')
-        nav('/list_product');
+      try{
+        const {data} = await BaseApi.post('store/currentstore/updateProduct',payload,{withCredentials:true});
+        if(data){
+          toastLoagin('Atualizado com sucesso','Produto atualizado com sucesso!',30 ,'success')
+          nav('/list_product');
+        }
+       
       }
+      catch(error){
+        toastLoagin('Falha ao atualizar',error as string,30 ,'error')
+      }
+    
+      
+      
     }
 
 
