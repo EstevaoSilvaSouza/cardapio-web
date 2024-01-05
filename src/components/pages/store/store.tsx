@@ -165,14 +165,20 @@ const Store = () => {
           </DivBtns>
           <DivDivider/>
           <SubDivStore>
-            {filterItens?.Data.Products?.map((e: any) => (
-              <CardStore
-                key={e?.Id}
-                AddQuantity={AddQuantity}
-                AddCart={AddCartItem}
-                obj={e}
-              />
-            ))}
+            {filterItens.Categoria?.map((s:any) => (
+              <>
+              <h1>{s}</h1>
+                {filterItens?.Data.Products?.filter((e: any) => e.Type === s).map((t:any) => (
+                    <CardStore
+                      key={t?.Id}
+                      AddQuantity={AddQuantity}
+                      AddCart={AddCartItem}
+                      obj={t}
+                    />
+                ))}
+              </>
+            ) )}
+            
           </SubDivStore>
         </>
       ) : (
