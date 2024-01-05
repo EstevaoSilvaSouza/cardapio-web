@@ -98,6 +98,7 @@ interface modalSettings {
             >
               Excluir
             </Button>
+            
           </ButtonGroup>
         </CardFooter>
       </Card>
@@ -168,6 +169,9 @@ interface modalSettings {
             </Button>
             <Button colorScheme="purple" ml={4}>
             <SecurityScanOutlined style={{marginRight:'10px'}}/> Log
+            </Button>
+            <Button  onClick={getItensProduct}colorScheme="green" ml={4}>
+            <SecurityScanOutlined  style={{marginRight:'10px'}}/> Atualizar
             </Button>
          </Box>
         
