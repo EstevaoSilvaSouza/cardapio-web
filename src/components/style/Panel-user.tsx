@@ -101,7 +101,8 @@ export const LinkItem = styled(Link)`
     }
 
     @media only screen and (max-width: 600px) {
-        margin-left: 10px;
+        margin-left: 0px;
+        font-size:14px;
     }
 `;
 
