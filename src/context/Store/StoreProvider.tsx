@@ -30,7 +30,7 @@ export const StoreProvider = ({
     const Items = localStorage.getItem(Token);
     return Items;
   };
-  const AddCartLocal = (data: IProduct) => {
+  const AddCartLocal = (data: IProduct,storeName:string) => {
     const Itens: any = JSON.parse(GetItensLocal()!);
 
     let Cart: any;
@@ -43,17 +43,15 @@ export const StoreProvider = ({
 
     const CartInfo: IStoreCart | null = {
       Items: Cart?.Items,
-      CartName: "Olá Burguer",
+      CartName: storeName || "Olá Burguer",
       Table: "1",
     };
     localStorage.setItem(Token, JSON.stringify(CartInfo));
     SetStoreCart(CartInfo);
-
-    console.log(StoreCart);
   };
 
-  let CreateCart = async (obj: IProduct): Promise<number | null> => {
-    AddCartLocal(obj);
+  let CreateCart = async (obj: IProduct,storeName:string): Promise<number | null> => {
+    AddCartLocal(obj,storeName);
     return 2;
   };
 

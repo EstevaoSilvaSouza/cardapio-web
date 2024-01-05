@@ -101,7 +101,7 @@ const Store = () => {
 
   const AddCartItem = (obj: IProduct): void => {
     obj.Id = Math.random() + 2 * 3;
-    CreateCart(obj);
+    CreateCart(obj,NameStore as string);
   };
 
   const SendCart = () => {

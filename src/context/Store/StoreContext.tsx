@@ -9,7 +9,7 @@ export interface IStoreCart {
 
 export interface IStoreContext {
   StoreCart: IStoreCart | null;
-  CreateCart: (obj: IProduct) => Promise<number | null>;
+  CreateCart: (obj: IProduct,storeName:string) => Promise<number | null>;
   removeCart : (idx:any) => void;
 }
 

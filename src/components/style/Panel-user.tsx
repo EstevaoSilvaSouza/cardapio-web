@@ -51,6 +51,10 @@ export const CardMenuName = styled.div`
         color: #555;
         font-size: 1rem;
     }
+
+    @media only screen and (max-width: 600px) {
+        padding: 15px;
+    }
 `;
 
 export const CardItemMenu = styled.div<{ active?: boolean }>`
@@ -78,9 +82,9 @@ export const CardItemMenu = styled.div<{ active?: boolean }>`
         animation: ${hoverEffect} 0.3s ease;
     }
 
-    @media (max-width: 768px) {
-        width: 100%;
-        max-width: none;
+    @media only screen and (max-width: 600px) {
+        padding: 15px;
+        height: 40px;
     }
 `;
 
@@ -94,6 +98,10 @@ export const LinkItem = styled(Link)`
     &:hover {
         color: #EB2937;
         transition: color 0.3s ease;
+    }
+
+    @media only screen and (max-width: 600px) {
+        margin-left: 10px;
     }
 `;
 
