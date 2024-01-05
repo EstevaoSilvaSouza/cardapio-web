@@ -105,3 +105,24 @@ export const BtnsAdd = styled.button`
     
   }
 `;
+
+export const BtnCart = styled.button`
+  background-color: ${primaryColor};
+  color: ${secondaryColor};
+  height: 35px;
+  margin-top: 15px;
+  width: 150px;
+  cursor: pointer;
+  align-self: center;
+  justify-self: center;
+  border: none;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #090303b9;
+  }
+
+  @media screen and (max-width:767px){
+    margin-top:20px;
+  } 
+`;

@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import CardStore from "../../cardstore/cardstore";
 import {
+  BtnCart,
   Btns,
   BtnsAdd,
   DivBtns,
@@ -113,7 +114,7 @@ const Store = () => {
         <>
           {filterItens ? (
         <>
-          <BtnsAdd onClick={SendCart}>Carrinho</BtnsAdd>
+          <BtnCart onClick={SendCart}>Carrinho</BtnCart>
           <div
             style={{
               width: "100%",
