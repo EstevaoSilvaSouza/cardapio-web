@@ -174,7 +174,7 @@ const Store = () => {
             flexDirection="column"
             mb="4" // Adicionando margem inferior entre as categorias
           >
-            <Heading as="h1" size="lg" mb="2">
+            <Heading as="h1" size="lg" mb="2" color="teal.500" fontWeight="bold" bg="gray.100" boxShadow="md">
               {category}
             </Heading>
             <Box
