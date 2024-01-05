@@ -166,7 +166,7 @@ const Store = () => {
           <DivDivider/>
           <SubDivStore>
             {filterItens.Categoria?.map((s:any) => (
-              <>
+              <div style={{width:'100%'}}>
               <h1>{s}</h1>
                 {filterItens?.Data.Products?.filter((e: any) => e.Type === s).map((t:any) => (
                     <CardStore
@@ -176,7 +176,7 @@ const Store = () => {
                       obj={t}
                     />
                 ))}
-              </>
+              </div>
             ) )}
             
           </SubDivStore>
