@@ -57,13 +57,16 @@ const OrderDetails = () => {
                  <Heading>Status : {order.Pedido.Status}</Heading>
                 
                  <h3>Itens do Pedido</h3>
-                 {order.Pedido.orderProducts.map((E) => {
-                    <>
-                        <h4>{E.Name}</h4>
-                        <h4>{E.Value}</h4>
-                        <h4>{E.Quantity}</h4>
-                    </>
-                 })}
+                <Center>
+                    {order.Pedido.orderProducts.map((h) => (
+                        <>
+                            <h4>{h.Name}</h4>
+                            <h4>{h.Value}</h4>
+                            <h4>{h.Quantity}</h4>
+                        </>
+                    ))}    
+                </Center>
+               
                 </>
             ) 
             : (
