@@ -10,20 +10,25 @@ export const StoreProvider = ({
   const [StoreCart, SetStoreCart] = useState<IStoreCart | null>(null);
   const Token = "Gsp_Cart";
 
+  const loadCart = () => {
+    localStorage.setItem(
+      Token,
+      JSON.stringify({
+        Items: [],
+        NameCart: "Olá Burguer",
+        Id_Table: "1",
+      })
+    ); 
+  }
+
   useEffect(() => {
     const Check = JSON.parse(localStorage.getItem(Token)!);
     if (Check) {
      localStorage.removeItem(Token);
+     loadCart();
     }
     else{
-      localStorage.setItem(
-        Token,
-        JSON.stringify({
-          Items: [],
-          NameCart: "Olá Burguer",
-          Id_Table: "1",
-        })
-      ); 
+      loadCart();
     }
     SetStoreCart(JSON.parse(localStorage.getItem(Token)!));
     //console.log(StoreCart);
