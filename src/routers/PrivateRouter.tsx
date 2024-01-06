@@ -15,10 +15,6 @@ const PrivateRouter = () => {
                     ))}
                 </Routes>
             </Panel>
-
-        
-           
-            
         </>
     )
 }

@@ -53,6 +53,7 @@ const StoreCart = () => {
     const {data} = await BaseApi.post('/cart/store/newOrder',{...StoreItems,Status:true, Items:StoreItems?.Items});
     if(data){
       alert(`${data.message} Order:${data.Order}`);
+      navigate(`/cardapio/loja/orders/${data.Order}`)
     }
   }
 

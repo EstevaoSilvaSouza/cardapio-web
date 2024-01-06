@@ -7,6 +7,7 @@ import MainRouter from "../../routers/MainRouter";
 import PrivateRouter from "../../routers/PrivateRouter";
 import AuthCheck from "./Auth.check";
 import CreateStore from "../../components/pages/user-panel/CreateStore";
+import OrderDetails from "../../components/pages/store/orderDetails";
 
 
 export const RoutersBase = {
@@ -14,6 +15,7 @@ export const RoutersBase = {
     [
         {path:'loja/:NameStore',element:<Store/>},
         {path:'loja/checkout/:NameStore',element:<StoreCart/>},
+        {path:'loja/orders/:Id',element:<OrderDetails/>},
     ],
     PrivateRouter: 
     [
