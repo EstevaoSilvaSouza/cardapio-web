@@ -71,6 +71,7 @@ export const StoreProvider = ({
   };
 
   let CreateCart = async (obj: IProduct,storeName:string): Promise<number | null> => {
+    checkUrl();
     AddCartLocal(obj,storeName);
     return 2;
   };

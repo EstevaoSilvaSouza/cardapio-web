@@ -29,10 +29,10 @@ const StyledLink = styled(Link)`
 
 
 const SearchPage = ({func,statFunc}:{func:any,statFunc:any}) => (
-  <Stack w={'50%'} margin={'0 auto'} paddingBottom={'20px'}>
+  <Stack w={'80%'} margin={'0 auto'} paddingBottom={'20px'}>
     <InputGroup>
       <Input bg={'#F2F2F2'} marginRight={3} onChange={statFunc} placeholder="busque sua loja" textAlign={'center'} fontWeight={'500'}/>
-      <Button onClick={func} bg={'#6FCF97'} w={250} size={'md'} color={'white'}>
+      <Button width={'100%'} onClick={func} bg={'#6FCF97'} w={250} size={'md'} color={'white'}>
         Buscar
       </Button>
     </InputGroup>
