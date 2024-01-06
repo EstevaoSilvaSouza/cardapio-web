@@ -31,7 +31,6 @@ const StyledLink = styled(Link)`
 const SearchPage = ({func,statFunc}:{func:any,statFunc:any}) => (
   <Stack w={'50%'} margin={'0 auto'} paddingBottom={'20px'}>
     <InputGroup>
-      <InputLeftAddon   children={'cardapio/loja/'}/>
       <Input bg={'#F2F2F2'} marginRight={3} onChange={statFunc} placeholder="busque sua loja" textAlign={'center'} fontWeight={'500'}/>
       <Button onClick={func} bg={'#6FCF97'} w={250} size={'md'} color={'white'}>
         Buscar
