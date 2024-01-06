@@ -50,7 +50,7 @@ const StoreCart = () => {
 
 
   const submitCart = async() => {
-    const {data} = await BaseApi.post('/cart/store/newOrder',StoreItems);
+    const {data} = await BaseApi.post('/cart/store/newOrder',{...StoreItems,Status:true});
     if(data){
       alert(`${data.message} Order:${data.Order}`);
     }
