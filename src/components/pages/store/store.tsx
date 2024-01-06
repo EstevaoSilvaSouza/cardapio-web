@@ -103,8 +103,12 @@ const Store = () => {
   }, [data]);
 
   const AddCartItem = (obj: IProduct): void => {
-    let objIdTemp = obj.Id; 
-    obj.Id_ProduRef = objIdTemp;
+    if(!obj.Id){
+      obj.Id = uuidv4();
+    }
+
+    obj.Id_ProduRef = obj.Id_ProduRef || obj.Id;
+
     obj.Id = uuidv4();
     CreateCart(obj,NameStore as string);
   };

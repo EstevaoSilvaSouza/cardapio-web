@@ -54,7 +54,7 @@ const StoreCart = () => {
     if(data){
       setTimeout(() => {
         navigate(`/cardapio/loja/orders/${data.Order}`)
-      },5000)
+      },6000)
       
     }
   }

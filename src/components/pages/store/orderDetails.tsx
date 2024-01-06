@@ -1,4 +1,4 @@
-import { Center, Heading } from "@chakra-ui/react"
+import { Button, Center, Heading } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 import { BaseApi } from "../../../context/BaseApi";
 import { useParams } from "react-router-dom";
@@ -52,6 +52,7 @@ const OrderDetails = () => {
 
     return (
         <Center>
+            <Button onClick={loadOrder}>Atualizar</Button>
             {order ? (
                 <>
                  <Heading>Pedido : {order.Pedido.Id}</Heading>
