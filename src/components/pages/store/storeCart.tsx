@@ -16,6 +16,7 @@ import {
 } from "../../style/storecart";
 import { IProduct } from "./store";
 import { Box } from "@chakra-ui/react";
+import { BaseApi } from "../../../context/BaseApi";
 
 const StoreCart = () => {
   const { StoreCart , removeCart} = useContext(StoreContext);
@@ -43,9 +44,17 @@ const StoreCart = () => {
         Items: [...ObjRef.Items],
       }));
 
-      console.log(StoreItems)
+      localStorage.setItem("Gsp_Cart",JSON.stringify(StoreItems));
     }
   };
+
+
+  const submitCart = async() => {
+    const {data} = await BaseApi.post('/cart/store/newOrder',StoreItems);
+    if(data){
+      alert(`${data.message} Order:${data.Order}`);
+    }
+  }
 
   const backToMenu = () => {
     navigate(`/cardapio/loja/${NameStore}`);
@@ -109,7 +118,7 @@ const StoreCart = () => {
                 </div>
 
                 <div style={{marginTop:'12  px'}}>
-                <Button>
+                <Button onClick={submitCart}>
                   Finalizar pedido
                 </Button>
                 </div>

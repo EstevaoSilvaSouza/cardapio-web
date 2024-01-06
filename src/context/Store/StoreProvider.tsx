@@ -50,6 +50,7 @@ export const StoreProvider = ({
     const Items = localStorage.getItem(Token);
     return Items;
   };
+  
   const AddCartLocal = (data: IProduct,storeName:string) => {
     const Itens: any = JSON.parse(GetItensLocal()!);
 
