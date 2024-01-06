@@ -3,7 +3,6 @@ import CardStore from "../../cardstore/cardstore";
 import {
   BtnCart,
   Btns,
-  BtnsAdd,
   DivBtns,
   DivDivider,
   MainDivStore,
@@ -14,15 +13,17 @@ import { Send } from "../../../context/api/SendApi";
 import { AxiosResponse } from "axios";
 import { StoreContext } from "../../../context/Store/StoreContext";
 import { Box, Heading } from "@chakra-ui/react";
+import { v4 as uuidv4 } from 'uuid';
 
 export interface IProduct {
-  Id: number;
+  Id: any;
   Name: string;
   Type: string;
   Value: number;
   Quantity: number;
   Description: string;
   Tag: string;
+  Id_ProduRef?:number;
 }
 export interface IStore {
   Data: {
@@ -102,7 +103,9 @@ const Store = () => {
   }, [data]);
 
   const AddCartItem = (obj: IProduct): void => {
-    obj.Id = Math.random() + 2 * 3;
+    let objIdTemp = obj.Id; 
+    obj.Id_ProduRef = objIdTemp;
+    obj.Id = uuidv4();
     CreateCart(obj,NameStore as string);
   };
 

@@ -17,8 +17,8 @@ export const StoreProvider = ({
         Token,
         JSON.stringify({
           Items: [],
-          CartName: "Olá Burguer",
-          Table: "1",
+          NameCart: "Olá Burguer",
+          Id_Table: "1",
         })
       );
     }
@@ -43,8 +43,8 @@ export const StoreProvider = ({
 
     const CartInfo: IStoreCart | null = {
       Items: Cart?.Items,
-      CartName: storeName || "Olá Burguer",
-      Table: "1",
+      NameCart: storeName || "Olá Burguer",
+      Id_Table: "1",
     };
     localStorage.setItem(Token, JSON.stringify(CartInfo));
     SetStoreCart(CartInfo);
