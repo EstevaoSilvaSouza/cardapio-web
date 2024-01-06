@@ -23,6 +23,7 @@ interface IProduct {
     NameCart: string;
     Status: boolean;
     createdAt: string;
+    StatusOrder:string;
     updatedAt: string;
     Id_Table: number;
     orderProducts: IProduct[];
@@ -54,7 +55,7 @@ const OrderDetails = () => {
             {order ? (
                 <>
                  <Heading>Pedido : {order.Pedido.Id}</Heading>
-                 <Heading>Status : {order.Pedido.Status}</Heading>
+                 <Heading>Status : {order.Pedido.StatusOrder}</Heading>
                 
                  <h3>Itens do Pedido</h3>
                 <Center>
