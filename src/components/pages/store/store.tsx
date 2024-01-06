@@ -139,7 +139,7 @@ const Store = () => {
                 src={filterItens.Data.ImageUrl}
               />
             </div>
-  
+            <DivDivider/>
             <h1>{filterItens?.Data?.Name}</h1> 
             <p>.</p>
             <p>{filterItens?.Data?.Description}</p>

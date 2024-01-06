@@ -21,7 +21,19 @@ export const StoreProvider = ({
     ); 
   }
 
+  const checkUrl = () => {
+    const cart = JSON.parse(GetItensLocal()!) as IStoreCart;
+    if(cart){
+      const url = window.location.pathname;
+      const splitUrl = url.split('/').filter((e) => e.trim() !== '');
+      const nameCart= splitUrl![splitUrl!.length -1 ];
+      if(cart.NameCart !== nameCart){
+        loadCart();
+      }
+    }
+  }
   useEffect(() => {
+    checkUrl();
     const Check = JSON.parse(localStorage.getItem(Token)!);
     if (Check) {
      localStorage.removeItem(Token);
