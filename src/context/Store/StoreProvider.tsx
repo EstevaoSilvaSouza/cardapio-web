@@ -12,7 +12,10 @@ export const StoreProvider = ({
 
   useEffect(() => {
     const Check = JSON.parse(localStorage.getItem(Token)!);
-    if (!Check) {
+    if (Check) {
+     localStorage.removeItem(Token);
+    }
+    else{
       localStorage.setItem(
         Token,
         JSON.stringify({
@@ -20,7 +23,7 @@ export const StoreProvider = ({
           NameCart: "Olá Burguer",
           Id_Table: "1",
         })
-      );
+      ); 
     }
     SetStoreCart(JSON.parse(localStorage.getItem(Token)!));
     //console.log(StoreCart);
