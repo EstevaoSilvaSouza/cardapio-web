@@ -42,6 +42,8 @@ const StoreCart = () => {
         ...prev,
         Items: [...ObjRef.Items],
       }));
+
+      console.log(StoreItems)
     }
   };
 
@@ -68,7 +70,7 @@ const StoreCart = () => {
         <TitleCart>Carrinho de Compra</TitleCart>
 
         <div>
-          <H3> Carrinho de Compra - {StoreItems?.CartName}</H3>
+          <H3> Carrinho de Compra - {StoreItems?.NameCart}</H3>
           <H2>Itens no Carrinho - {StoreItems?.Items?.length}</H2>
           {StoreItems?.Items ? (
             <DivCartSub>

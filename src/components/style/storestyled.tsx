@@ -130,6 +130,6 @@ export const DivDivider =styled.div`
 
   @media only screen and (max-width:767px){
     display:block;
-    height:45px
+    height:50px
   }
 `;
